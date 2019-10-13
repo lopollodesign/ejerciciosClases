@@ -35,7 +35,6 @@ public class Stock {
     public void addProducto(Producto producto){
         this.productos.add(producto);
     }
-    
     public void removeProducto(Producto producto){
         this.productos.remove(producto);
     }

@@ -12,23 +12,38 @@ public class TablaProducto extends JTable {
     }
     
     public void fillData(ArrayList<Producto> productos) {
-        ArrayList columnas;
         ((DefaultTableModel)this.getModel()).addColumn("Nombre");
         ((DefaultTableModel)this.getModel()).addColumn("Precio");
         ((DefaultTableModel)this.getModel()).addColumn("Peso");
 
-        ArrayList header = new ArrayList<String>();
-        header.add("Nombre");
-        header.add("Precio");
-        header.add("Peso");
-        ((DefaultTableModel)this.getModel()).addRow(header.toArray());
+        ArrayList headerGeneral = new ArrayList<String>();
+        headerGeneral.add("Nombre");
+        headerGeneral.add("Precio");
+        headerGeneral.add("Peso");
 
+        ArrayList headerSeparate = new ArrayList<String>();
+        headerSeparate.add(" ");
+
+        ArrayList headerStock = new ArrayList<String>();
+        headerStock.add("STOCK");
+
+        ((DefaultTableModel)this.getModel()).addRow(headerStock.toArray());
+        ((DefaultTableModel)this.getModel()).addRow(headerGeneral.toArray());
+
+        ArrayList columnasStock;
         for (Producto producto : productos){
-            columnas = new ArrayList<String>();
-            columnas.add(producto.getNombre());
-            columnas.add(producto.getPrecio());
-            columnas.add(producto.getPeso());
-            ((DefaultTableModel)this.getModel()).addRow(columnas.toArray());
+            columnasStock = new ArrayList<String>();
+            columnasStock.add(producto.getNombre());
+            columnasStock.add(producto.getPrecio());
+            columnasStock.add(producto.getPeso());
+            ((DefaultTableModel)this.getModel()).addRow(columnasStock.toArray());
         }
+
+        ArrayList headerCarrito = new ArrayList<String>();
+        headerCarrito.add("CARRITO");
+
+        ((DefaultTableModel)this.getModel()).addRow(headerSeparate.toArray());
+        ((DefaultTableModel)this.getModel()).addRow(headerCarrito.toArray());
+        ((DefaultTableModel)this.getModel()).addRow(headerGeneral.toArray());
     }
 }
