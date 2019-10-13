@@ -9,13 +9,13 @@ package clases;
  *
  * @author lopollo
  */
-public class producto {
+public class Producto{
     public String nombre;
     public float precio;
     public float peso;
     private int cantidad = 1;
     
-    public producto( String nombre , float precio , float peso ) {
+    public Producto( String nombre , float precio , float peso ) {
         this.nombre = nombre;
         this.precio = precio;
         this.peso = peso;

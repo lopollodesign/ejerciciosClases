@@ -1,21 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author lopollo
- */
 public class Carrito {
-    private ArrayList<producto> productos = new ArrayList(); 
-    
-    public Carrito(){       
+    private ArrayList<Producto> productos = new ArrayList(); 
+
+    public ArrayList<Producto> getProductos() {
+        return productos;
     }
+    
+    public Carrito(){}
     
     public int getNumProductos(){
         return productos.size();
@@ -23,7 +17,7 @@ public class Carrito {
     
     public float getPrecioTotal(){
         float contador = (float) 0.0;
-        for( producto index : productos) {
+        for( Producto index : productos) {
             contador += index.precio;
         }
         return contador;
@@ -31,17 +25,17 @@ public class Carrito {
     
     public float getPesoTotal(){
         float contador = (float) 0.0;
-        for( producto index : productos) {
+        for( Producto index : productos) {
             contador += index.peso;
         }
         return contador;
     }
     
-    public void addProducto(producto producto){
+    public void addProducto(Producto producto){
         this.productos.add(producto);
     }
     
-    public void removeProducto(producto producto){
+    public void removeProducto(Producto producto){
         this.productos.remove(producto);
     }
     
