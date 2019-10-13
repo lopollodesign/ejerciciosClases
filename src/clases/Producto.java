@@ -6,6 +6,12 @@ public class Producto{
     private float peso;
     private int units = 1;
 
+    public Producto( String nombre , float precio , float peso ) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.peso = peso;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -18,12 +24,6 @@ public class Producto{
         return peso;
     }
 
-    public Producto( String nombre , float precio , float peso ) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.peso = peso;
-    }
-    
     public void addUnity(int quantity) {
         this.units += quantity;
     }
