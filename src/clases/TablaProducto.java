@@ -16,6 +16,13 @@ public class TablaProducto extends JTable {
         ((DefaultTableModel)this.getModel()).addColumn("Nombre");
         ((DefaultTableModel)this.getModel()).addColumn("Precio");
         ((DefaultTableModel)this.getModel()).addColumn("Peso");
+
+        ArrayList header = new ArrayList<String>();
+        header.add("Nombre");
+        header.add("Precio");
+        header.add("Peso");
+        ((DefaultTableModel)this.getModel()).addRow(header.toArray());
+
         for (Producto producto : productos){
             columnas = new ArrayList<String>();
             columnas.add(producto.getNombre());
