@@ -2,9 +2,7 @@ package clases;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTable;
+import javax.swing.*;
 
 public class App extends JFrame{
    public String nombre;

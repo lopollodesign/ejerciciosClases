@@ -49,7 +49,7 @@ public class Ropa extends Producto{
     
     @Override
     public String toString() {
-        return this.nombre;
+        return this.getNombre();
     }
     
 }

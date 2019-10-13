@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class TablaProducto extends JTable{
+public class TablaProducto extends JTable {
     
     public TablaProducto(ArrayList<Producto> productos){
         super();
@@ -16,12 +16,11 @@ public class TablaProducto extends JTable{
         ((DefaultTableModel)this.getModel()).addColumn("Nombre");
         ((DefaultTableModel)this.getModel()).addColumn("Precio");
         ((DefaultTableModel)this.getModel()).addColumn("Peso");
-        ((DefaultTableModel)this.getModel()).addColumn("Peso");
         for (Producto producto : productos){
             columnas = new ArrayList<String>();
-            columnas.add(producto.nombre);
-            columnas.add(producto.precio);
-            columnas.add(producto.peso);
+            columnas.add(producto.getNombre());
+            columnas.add(producto.getPrecio());
+            columnas.add(producto.getPeso());
             ((DefaultTableModel)this.getModel()).addRow(columnas.toArray());
         }
     }

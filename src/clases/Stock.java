@@ -2,14 +2,15 @@ package clases;
 
 import java.util.ArrayList;
 
-public class Carrito {
-    private ArrayList<Producto> productos = new ArrayList(); 
+public class Stock {
+
+    private ArrayList<Producto> productos = new ArrayList<>();
 
     public ArrayList<Producto> getProductos() {
         return productos;
     }
-    
-    public Carrito(){}
+
+    public Stock(){}
     
     public int getNumProductos(){
         return productos.size();

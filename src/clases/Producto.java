@@ -1,20 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases;
 
-/**
- *
- * @author lopollo
- */
 public class Producto{
-    public String nombre;
-    public float precio;
-    public float peso;
+    private String nombre;
+    private float precio;
+    private float peso;
     private int cantidad = 1;
-    
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public float getPeso() {
+        return peso;
+    }
+
     public Producto( String nombre , float precio , float peso ) {
         this.nombre = nombre;
         this.precio = precio;
