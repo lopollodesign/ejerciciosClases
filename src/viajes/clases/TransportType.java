@@ -34,4 +34,9 @@ public class TransportType {
     public int getSpeed() {
         return speed;
     }
+
+
+    private TransportType getCar(){
+        return new TransportType("car", 10f , 200);
+    }
 }

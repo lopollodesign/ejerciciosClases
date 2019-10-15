@@ -68,20 +68,38 @@ public class Traveller {
     public ArrayList<Traveller> createTravellers(int travellersAccount){
         ArrayList<Traveller> newTravellers = new ArrayList<>();
         Random random = new Random();
-        Traveller newTraveller = new Traveller();
-
         for( int i = 0 ; i < travellersAccount ; ++i ){
+            Traveller newTraveller = new Traveller();
             int randomNameIndex = random.nextInt(this.NAMES.length);
             int randomLastNameIndex = random.nextInt(this.LAST_NAMES.length);
             int randomBudgetIndex = random.nextInt(this.BUDGETS.length);
-
             newTraveller.setName(this.NAMES[randomNameIndex]);
             newTraveller.setLastName(this.LAST_NAMES[randomLastNameIndex]);
             newTraveller.setBudget(this.BUDGETS[randomBudgetIndex]);
-
             newTravellers.add(newTraveller);
         }
-
         return newTravellers;
     }
+
+    @Override
+    public String toString(){
+        return this.name + " " + this.lastName + ", Presupuesto: " + this.budget;
+    }
+
+//    private ArrayList<String> listTravellers;
+//
+//    public void setListTravellers(ArrayList<Traveller> travellers) {
+//        ArrayList<String> newListTravellers = new ArrayList<>();
+//        String newTraveller;
+//        for (Traveller travellerIndex : travellers) {
+//            newTraveller = travellerIndex.toString();
+//            newListTravellers.add(newTraveller);
+//        }
+//        this.listTravellers = newListTravellers;
+//    }
+//
+//    public ArrayList<String> getListTravellers(){
+//        return this.listTravellers;
+//    }
+
 }
