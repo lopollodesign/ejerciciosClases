@@ -1,13 +1,17 @@
 package viajes.clases;
 
+import java.util.Random;
+
 public class TransportType {
     private  String name;
-    private float price;
-    private int speed;
+    private float autonomy;
+    private float pricePerKm;
+    private float speed;
 
-    public TransportType(String name, float price, int speed){
+    public TransportType(String name, float autonomy, float pricePerKm, float speed){
         this.name = name;
-        this.price = price;
+        this.autonomy = autonomy;
+        this.pricePerKm = pricePerKm;
         this.speed = speed;
     }
 
@@ -15,28 +19,45 @@ public class TransportType {
         this.name = name;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setPrice(float pricePerKm) {
+        this.pricePerKm = pricePerKm;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(float speed) {
         this.speed = speed;
+    }
+
+    public void setAutonomy(float autonomy) {
+        this.autonomy = autonomy;
     }
 
     public String getName() {
         return name;
     }
 
-    public float getPrice() {
-        return price;
+    public float getPricePerKm() {
+        return pricePerKm;
     }
 
-    public int getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
+    public float getAutonomy() {
+        return autonomy;
+    }
 
-    private TransportType getCar(){
-        return new TransportType("car", 10f , 200);
+    public TransportType getCar(){
+        return new TransportType("car", 10f , 10f, 200f);
+    }
+
+    public static TransportType createRandomTransportType(){
+        Random random = new Random();
+        int randomValue = random.nextInt(5);
+        switch (randomValue) {
+            case 0:
+
+        }
+        return null;
     }
 }

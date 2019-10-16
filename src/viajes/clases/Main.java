@@ -12,7 +12,7 @@ public class Main {
         ArrayList<Traveller> travellers = new Traveller().createTravellers(5);
 
         //OUTPUT
-        listToStringTravellers(travellers);
+        listToString(travellers);
         listToStringDestination(destinations);
     }
 
@@ -25,6 +25,14 @@ public class Main {
     }
 
     private static void listToStringTravellers(ArrayList<Traveller> objectsList) {
+        String information;
+        for (Object objectIndex : objectsList){
+            information = objectIndex.toString();
+            System.out.println(information);
+        }
+    }
+
+    public static void listToString(List objectsList) {
         String information;
         for (Object objectIndex : objectsList){
             information = objectIndex.toString();
