@@ -83,23 +83,11 @@ public class Traveller {
 
     @Override
     public String toString(){
-        return this.name + " " + this.lastName + ", Presupuesto: " + this.budget;
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-12s", this.name));
+        sb.append(String.format("%-12s", this.lastName));
+        sb.append(String.format("%10.2f", this.budget));
+        return sb.toString();
     }
-
-//    private ArrayList<String> listTravellers;
-//
-//    public void setListTravellers(ArrayList<Traveller> travellers) {
-//        ArrayList<String> newListTravellers = new ArrayList<>();
-//        String newTraveller;
-//        for (Traveller travellerIndex : travellers) {
-//            newTraveller = travellerIndex.toString();
-//            newListTravellers.add(newTraveller);
-//        }
-//        this.listTravellers = newListTravellers;
-//    }
-//
-//    public ArrayList<String> getListTravellers(){
-//        return this.listTravellers;
-//    }
 
 }

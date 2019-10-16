@@ -3,11 +3,11 @@ package viajes.clases;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.List;
 
 public class Destination {
     private String name;
     private Point point;
-
 
     private String[] NAMES = {"Badajoz", "Santoña", "Puyo", "Minca", "San Pedro", "Valldemossa", "Béjar"};
     private Point[] POINTS = { new Point(3 ,4 ) , new Point(6 ,9 ), new Point(10 ,2 ), new Point(20 ,10 ), new Point(50 ,30 ) };
@@ -34,8 +34,8 @@ public class Destination {
         return NAMES;
     }
 
-    ArrayList<Destination> createDestinations(){
-        ArrayList<Destination> newDestinations = new ArrayList<>();
+    List<Destination> createDestinations(){
+        List<Destination> newDestinations = new ArrayList<>();
         Random random = new Random();
         for( int i = 0 ; i < this.NAMES.length ; ++i ){
             Destination newDestination = new Destination();
@@ -50,5 +50,6 @@ public class Destination {
     @Override
     public String toString(){
         return this.name + " " + this.point.x + " " + this.point.y;
+
     }
 }

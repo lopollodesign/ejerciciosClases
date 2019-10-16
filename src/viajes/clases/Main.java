@@ -1,13 +1,14 @@
 package viajes.clases;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
         // CREACION DE DATOS RANDOM
-        ArrayList<Destination> destinations = new Destination().createDestinations();
+        List<Destination> destinations = new Destination().createDestinations();
         ArrayList<Traveller> travellers = new Traveller().createTravellers(5);
 
         //OUTPUT
@@ -15,7 +16,7 @@ public class Main {
         listToStringDestination(destinations);
     }
 
-    private static void listToStringDestination(ArrayList<Destination> objectsList) {
+    private static void listToStringDestination(List<Destination> objectsList) {
         String information;
         for (Object objectIndex : objectsList){
             information = objectIndex.toString();
