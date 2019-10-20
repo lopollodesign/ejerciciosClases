@@ -26,7 +26,7 @@ public class BrokerTransport {
         }
     }
 
-    public static void assignTransportType( List<Traveller> travellers){
+    public static void assignTransportType( List<Traveller> travellers) {
         TransportType transportType;
         Travel travel;
         float distance;
@@ -39,7 +39,7 @@ public class BrokerTransport {
 
             travel = indexTraveller.getTravel();
             distance = travel.getDistance();
-            budget = indexTraveller.getBudget();
+            budget = indexTraveller.getBudget() * 100f;
 
             do {
 

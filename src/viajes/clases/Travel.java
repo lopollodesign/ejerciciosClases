@@ -27,12 +27,12 @@ public class Travel {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(" -- Travel: ");
         sb.append(this.departure);
-        sb.append(" to ");
+        sb.append(" hasta ");
         sb.append(this.arrival);
-        sb.append(". Distance: ");
+        sb.append(" (distancia: ");
         sb.append(this.distance);
+        sb.append(")");
         return sb.toString();
     }
 

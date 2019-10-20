@@ -29,7 +29,7 @@ public class Destination {
         int arrivalY = arrival.point.y;
         double distance = Math.sqrt((Math.pow( (arrivalX - departureX) , 2)) + (Math.pow( (arrivalY - departureY) , 2)));
 
-        return 20f * (float) distance;
+        return 5f * (float) distance;
     }
 
     public List<Destination> createDestinations(){

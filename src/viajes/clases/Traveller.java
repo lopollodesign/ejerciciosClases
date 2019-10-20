@@ -70,13 +70,15 @@ public class Traveller {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-12s", this.name));
-        sb.append(String.format("%-12s", this.lastName));
-        sb.append(String.format("%10.2f", this.budget));
-
+        sb.append(this.name);
+        sb.append(this.lastName);
+        sb.append(" con ");
+        sb.append(this.budget);
+        sb.append(" de dinero para ir de ");
         sb.append(this.travel);
-        sb.append(" - ");
+        sb.append(" puede ir en '");
         sb.append(this.transportType);
+        sb.append("'.");
         return sb.toString();
     }
 
