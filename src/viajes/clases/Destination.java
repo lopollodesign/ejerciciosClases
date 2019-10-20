@@ -22,19 +22,17 @@ public class Destination {
         this.name = name;
     }
 
-    public Point getPoint() {
-        return point;
+    public float getDistance( Destination arrival ){
+        int departureX = this.point.x;
+        int departureY = this.point.y;
+        int arrivalX = arrival.point.x;
+        int arrivalY = arrival.point.y;
+        double distance = Math.sqrt((Math.pow( (arrivalX - departureX) , 2)) + (Math.pow( (arrivalY - departureY) , 2)));
+
+        return 20f * (float) distance;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String[] getNAMES() {
-        return NAMES;
-    }
-
-    List<Destination> createDestinations(){
+    public List<Destination> createDestinations(){
         List<Destination> newDestinations = new ArrayList<>();
         Random random = new Random();
         for( int i = 0 ; i < this.NAMES.length ; ++i ){
@@ -49,7 +47,6 @@ public class Destination {
 
     @Override
     public String toString(){
-        return this.name + " " + this.point.x + " " + this.point.y;
-
+        return this.name;
     }
 }

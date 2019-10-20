@@ -1,6 +1,5 @@
 package viajes.clases;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -9,30 +8,15 @@ public class Main {
 
         // CREACION DE DATOS RANDOM
         List<Destination> destinations = new Destination().createDestinations();
-        ArrayList<Traveller> travellers = new Traveller().createTravellers(5);
+        List<Traveller> travellers = new Traveller().createTravellers(5);
+        BrokerTransport.assignTravel(travellers, destinations);
+        BrokerTransport.assignTransportType(travellers);
 
         //OUTPUT
         listToString(travellers);
-        listToStringDestination(destinations);
     }
 
-    private static void listToStringDestination(List<Destination> objectsList) {
-        String information;
-        for (Object objectIndex : objectsList){
-            information = objectIndex.toString();
-            System.out.println(information);
-        }
-    }
-
-    private static void listToStringTravellers(ArrayList<Traveller> objectsList) {
-        String information;
-        for (Object objectIndex : objectsList){
-            information = objectIndex.toString();
-            System.out.println(information);
-        }
-    }
-
-    public static void listToString(List objectsList) {
+    private static void listToString(List objectsList) {
         String information;
         for (Object objectIndex : objectsList){
             information = objectIndex.toString();

@@ -1,5 +1,7 @@
 package viajes.clases;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class TransportType {
@@ -15,49 +17,73 @@ public class TransportType {
         this.speed = speed;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    private static TransportType getWalking() {
+        return new TransportType("walking", 5f , 1f, 6f);
     }
 
-    public void setPrice(float pricePerKm) {
-        this.pricePerKm = pricePerKm;
+    private static TransportType getHorse(){
+        return new TransportType("horse", 40f , 5f, 18f);
     }
 
-    public void setSpeed(float speed) {
-        this.speed = speed;
+    private static TransportType getCarriage(){
+        return new TransportType("carriage",  120f, 20f, 10f);
     }
 
-    public void setAutonomy(float autonomy) {
-        this.autonomy = autonomy;
+    private static TransportType getBoat(){
+        return new TransportType("boat",  400f, 80f, 14f);
     }
 
-    public String getName() {
-        return name;
+    private static TransportType getDragon(){
+        return new TransportType("dragon",  840f, 5000f, 60f);
     }
 
-    public float getPricePerKm() {
-        return pricePerKm;
+    public static TransportType createRandomTransportType(){
+        Random random = new Random();
+        int randomValue = random.nextInt(4);
+        switch (randomValue) {
+            case 0:
+                return getHorse();
+            case 1:
+                return getCarriage();
+            case 2:
+                return getBoat();
+            case 3:
+                return getDragon();
+            case 4:
+                return getWalking();
+            default:
+                return getWalking();
+        }
     }
 
-    public float getSpeed() {
-        return speed;
+    public List<TransportType> transportTypeList(){
+        List<TransportType> transportTypeList = new ArrayList<TransportType>();
+
+        TransportType walking = getWalking();
+        TransportType horse = getHorse();
+        TransportType carriage = getCarriage();
+        TransportType boat = getBoat();
+        TransportType dragon = getDragon();
+
+        transportTypeList.add(walking);
+        transportTypeList.add(horse);
+        transportTypeList.add(carriage);
+        transportTypeList.add(boat);
+        transportTypeList.add(dragon);
+
+        return transportTypeList;
     }
 
     public float getAutonomy() {
         return autonomy;
     }
 
-    public TransportType getCar(){
-        return new TransportType("car", 10f , 10f, 200f);
+    public float getPricePerKm() {
+        return pricePerKm;
     }
 
-    public static TransportType createRandomTransportType(){
-        Random random = new Random();
-        int randomValue = random.nextInt(5);
-        switch (randomValue) {
-            case 0:
-
-        }
-        return null;
+    @Override
+    public String toString(){
+        return this.name;
     }
 }
