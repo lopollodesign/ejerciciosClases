@@ -1,50 +1,35 @@
 package dni_ui;
 
+import java.time.LocalDate;
+import java.util.*;
+import dni_ui.Person;
+
 public class Main {
 
     public static void main(String[] args) {
-        char[] indexLetter = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
-        String[][] cartera = { {"Vicens","Marina","Mama","Papa"} , {"43208361","43217190","42998922","43012034"} };
 
-        int number = 43208361;
-        int marinaNumber = 43217190;
-        int mamaNumber = 42998922;
-        int papaNumber = 43012034;
+        Person antonio = new Person("Antonio", "Gonzalez", LocalDate.of(1991, 6, 30), 43208361);
+        Person maria = new Person("Maria", "Gonzalez", LocalDate.of(1994, 7, 20), 30203061);
 
-        System.out.println(complete(number, false));
-        System.out.println(complete(marinaNumber, false));
-        System.out.println(complete(mamaNumber, false));
-        System.out.println(complete(papaNumber, false));
+        HashMap<String, Person> map = new HashMap <String, Person> ();
+        map.put(antonio.getDni(), antonio);
+        map.put(maria.getDni(), maria);
 
-        System.out.println("");
-        System.out.println("Con el for desde el Array:");
-        for ( int index = 0 ; index < cartera[0].length ; ++index ){
-            String name = cartera[0][index];
+        String inputDni;
+        do {
+            System.out.println("Pon un numero de DNI (incluida la letra)");
+            Scanner scanner = new Scanner(System.in);
+            inputDni = scanner.nextLine();
 
-            String nameNumber = cartera[1][index];
-            int simpleNumber = Integer.parseInt(nameNumber);
-            String completeDNI = complete(simpleNumber, true);
-
-            // DUDA:
-            // String otherPrint = complete(Integer.parseInt(cartera[1][index]),true);
-
-            System.out.println("El DNI de " + name + " es " + completeDNI);
-        }
-    }
-
-    public static String complete(int reference , boolean simple) {
-        char[] indexLetter = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
-        int position = reference % 23;
-        char letter = indexLetter[position];
-
-        if (simple){
-            return Integer.toString(reference) + Character.toString(letter);
-        } else {
-            if ( reference == 0 ) {
-                return "No puede ser 0";
+            if (map.containsKey(inputDni)){
+                String person = map.get(inputDni).toString();
+                System.out.println("Existe, es " + person);
+            } else {
+                System.out.println("No existe Existe");
             }
-            return "El DNI completo es: " + Integer.toString(reference) + Character.toString(letter);
-        }
+        } while (inputDni == "exit" || !map.containsKey(inputDni));
+
     }
+
 
 }
