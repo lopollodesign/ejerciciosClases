@@ -1,19 +1,17 @@
-package viajes.clases;
+package clases.trabajofinal;
 
+import java.util.Date;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        // CREACION DE DATOS RANDOM
+        // CREACION DE DESTINOS RANDOM
         List<Destination> destinations = new Destination().createDestinations();
-        List<Traveller> travellers = new Traveller().createTravellers(5);
-        BrokerTransport.assignTravel(travellers, destinations);
-        BrokerTransport.assignTransportType(travellers);
 
         //OUTPUT
-        listToString(travellers);
+        listToString(destinations);
     }
 
     private static void listToString(List objectsList) {
@@ -23,5 +21,4 @@ public class Main {
             System.out.println(information);
         }
     }
-
 }

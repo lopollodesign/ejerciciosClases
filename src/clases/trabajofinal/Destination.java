@@ -1,15 +1,15 @@
-package viajes.clases;
+package clases.trabajofinal;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.List;
+import java.util.Random;
 
 public class Destination {
     private String name;
     private Point point;
 
-    private String[] NAMES = {"Badajoz", "Santoña", "Puyo", "Minca", "San Pedro", "Valldemossa", "Béjar"};
+    private String[] NAMES = {"Berlín", "Munich", "París", "Barcelona", "Lyon", "Madrid", "Gijón", "Palma de Mallorca", "Tenerife", "Bogotá", "Lima", "Hong Kong"};
     private Point[] POINTS = { new Point(3 ,4 ) , new Point(6 ,9 ), new Point(10 ,2 ), new Point(20 ,10 ), new Point(50 ,30 ) };
 
     public Destination(){}
@@ -32,21 +32,22 @@ public class Destination {
         return 5f * (float) distance;
     }
 
-    public List<Destination> createDestinations(){
+    List<Destination> createDestinations() {
         List<Destination> newDestinations = new ArrayList<>();
         Random random = new Random();
-        for( int i = 0 ; i < this.NAMES.length ; ++i ){
+        for (String name : this.NAMES) {
             Destination newDestination = new Destination();
-            newDestination.setName(this.NAMES[i]);
+            newDestination.setName(name);
             int randomPointsIndex = random.nextInt(this.POINTS.length);
             newDestination.setPoint(this.POINTS[randomPointsIndex]);
             newDestinations.add(newDestination);
         }
         return newDestinations;
+
     }
 
     @Override
     public String toString(){
-        return this.name;
+        return this.name + ". X > " + this.point.x + ", Y > " + this.point.y;
     }
 }
