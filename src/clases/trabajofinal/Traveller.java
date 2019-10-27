@@ -18,9 +18,9 @@ public class Traveller implements Serializable {
         this.birthday = birthday;
     }
 
-    private void saveObject(Traveller traveller) {
+    private void saveTraveller(Traveller traveller) {
         try {
-            OutputStream fileOut = new FileOutputStream("/tmp/persona.json");
+            OutputStream fileOut = new FileOutputStream("/tmp/traveller.json");
             Writer writer = new OutputStreamWriter(fileOut);
             Gson gson = new GsonBuilder().create();
             gson.toJson(traveller, writer);
