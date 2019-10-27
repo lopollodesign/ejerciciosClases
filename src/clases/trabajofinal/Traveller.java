@@ -1,9 +1,15 @@
 package clases.trabajofinal;
 
+import java.util.Date;
+
 public class Traveller {
 
     private String name;
     private String lastName;
+    private Date birthday;
+
+
+
 
     // Aqui suscribimos el metodo de equals() de la clase generica `Object` que es de java de forma generica
     @Override

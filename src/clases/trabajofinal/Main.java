@@ -8,42 +8,47 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // CREACION DE DESTINOS RANDOM
-        List<Destination> destinations = createDestinations();
-
-        //OUTPUT
-        listToString(destinations);
-    }
-
-    private static List<Destination> createDestinations() {
-
-        return Arrays.asList(
-                new Destination("Berlin", new Point(3, 33)),
-                new Destination("Munich", new Point(6, 30)),
-                new Destination("Paris", new Point(9, 27)),
-                new Destination("Palma", new Point(12, 24)),
-                new Destination("London", new Point(15, 21)),
-                new Destination("Lyon", new Point(18, 18)),
-                new Destination("Gijon", new Point(21, 15)),
-                new Destination("Bogota", new Point(24, 12)),
-                new Destination("Lima", new Point(27, 9)),
-                new Destination("Hong Kong", new Point(30, 6)),
-                new Destination("Madrid", new Point(33, 3)),
-                new Destination("Manchester", new Point(36, 6)),
-                new Destination("Luxemburgo", new Point(39, 9)),
-                new Destination("Rabat", new Point(42, 12)),
-                new Destination("Fez", new Point(45, 15)),
-                new Destination("Dublín", new Point(48, 18)),
-                new Destination("Tolousse", new Point(51, 21)),
-                new Destination("Granada", new Point(54, 24)),
-                new Destination("Santander", new Point(57, 27)),
-                new Destination("Mahón", new Point(60, 30))
+        // CREACION DE DATOS
+        List<Destination> destinations = Arrays.asList(
+                new Destination("Barcelona", new Point(3, 33)),
+                new Destination("Madrid", new Point(6, 30)),
+                new Destination("Valencia", new Point(9, 27)),
+                new Destination("Palma", new Point(12, 24))
+        );
+        List<Hotel> hotels = Arrays.asList(
+                new Hotel("Hotel Iberostar Mediterráneo", destinations.get(0)),
+                new Hotel("Casa Nadal", destinations.get(0)),
+                new Hotel("Hotel Príncipe Pío", destinations.get(1)),
+                new Hotel("Madrid Motion Hotels", destinations.get(1)),
+                new Hotel("Expo Hotel Valencia", destinations.get(2)),
+                new Hotel("Meliá Valencia", destinations.get(2)),
+                new Hotel("Hotel Abelay", destinations.get(3)),
+                new Hotel("OLA Hotel", destinations.get(3))
+        );
+        List<Activity> activities = Arrays.asList(
+                new Activity("Visita guiada al Parc Güell", destinations.get(0)),
+                new Activity("Día en la Casa Batllò", destinations.get(0)),
+                new Activity("Visita al Parque del retiro", destinations.get(1)),
+                new Activity("Tour al Valle de los Caídos", destinations.get(1)),
+                new Activity("Vuelta en bici por la Ciutat de les ciències", destinations.get(2)),
+                new Activity("Tapas en el casco antiguo", destinations.get(2)),
+                new Activity("Visita a La Seu", destinations.get(3)),
+                new Activity("Excursión al Castell d'Alarò", destinations.get(3))
         );
 
+        // OUTPUT
+        listToString(destinations, "Destinations");
+        listToString(hotels, "Hotels");
+        listToString(activities, "Activities");
     }
 
-    private static void listToString(List objectsList) {
+
+    private static void listToString(List objectsList, String listName) {
         String information;
+        System.out.println(" ");
+        System.out.println("----------------- ");
+        System.out.println(" ");
+        System.out.println(listName + ":");
         for (Object objectIndex : objectsList){
             information = objectIndex.toString();
             System.out.println(information);

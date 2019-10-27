@@ -23,6 +23,6 @@ public class Destination {
 
     @Override
     public String toString(){
-        return this.name + ". X > " + this.point.x + ", Y > " + this.point.y;
+        return this.name;
     }
 }

@@ -34,7 +34,6 @@ public class TransportType {
 
     public List<TransportType> transportTypeList(){
         List<TransportType> transportTypeList = new ArrayList<>();
-
         TransportType bike = getBike();
         TransportType bus = getBus();
         TransportType train = getTrain();
