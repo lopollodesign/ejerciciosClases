@@ -2,19 +2,34 @@ package clases.trabajofinal;
 
 import java.awt.*;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        // CREACION DE DATOS
+        // CREACION DE DATOS ESTÁTICOS
+        List<Traveller> travellers = Arrays.asList(
+                new Traveller("Vicenç", "Álvarez Garau", new Date(1991, Calendar.DECEMBER, 13)),
+                new Traveller("Margalida", "Garau Mateu", new Date(1959, Calendar.NOVEMBER, 29)),
+                new Traveller("Vicente", "Álvarez Espinosa", new Date(1963, Calendar.DECEMBER, 4))
+        );
+        List<TransportType> transportTypes = Arrays.asList(
+                new TransportType("Bike", 1f, 6f),
+                new TransportType("Bus", 5f, 18f),
+                new TransportType("Train", 20f, 10f),
+                new TransportType("Boat", 80f, 14f),
+                new TransportType("Air plane", 5000f, 60f)
+        );
         List<Destination> destinations = Arrays.asList(
                 new Destination("Barcelona", new Point(3, 33)),
                 new Destination("Madrid", new Point(6, 30)),
                 new Destination("Valencia", new Point(9, 27)),
                 new Destination("Palma", new Point(12, 24))
         );
+
         List<Hotel> hotels = Arrays.asList(
                 new Hotel("Hotel Iberostar Mediterráneo", destinations.get(0)),
                 new Hotel("Casa Nadal", destinations.get(0)),

@@ -8,6 +8,7 @@ public class Booking {
     private Date checkIn;
     private Date checkOut;
     private int stayDays;
+
     private float dayPrice;
     private float totalPrice;
 
