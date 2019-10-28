@@ -55,6 +55,11 @@ public class Main {
         listToString(destinations, "Destinations");
         listToString(hotels, "Hotels");
         listToString(activities, "Activities");
+
+        Traveller vicens = new Traveller("Vicenç", "Álvarez Garau", new Date(1991, Calendar.DECEMBER, 13));
+        vicens.saveTraveller(vicens);
+
+
     }
 
 

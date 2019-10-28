@@ -18,9 +18,29 @@ public class Traveller implements Serializable {
         this.birthday = birthday;
     }
 
-    private void saveTraveller(Traveller traveller) {
+    public void saveTraveller(Traveller traveller) {
+//        FileOutputStream fop = null;
+//        File file;
+//        String content = "This is the text content";
+//
+//        try {
+//            file = new File("c:/json/traveller.txt");
+//            fop = new FileOutputStream(file);
+//
+//            if (!file.exists()){
+//                file.createNewFile();
+//            }
+//
+//            byte[] contentInBytes = content.getBytes();
+//
+//            fop.write(contentInBytes);
+//            fop.flush();
+//            fop.close();
+//
+//            System.out.println("Done");
+
         try {
-            OutputStream fileOut = new FileOutputStream("/tmp/traveller.json");
+            OutputStream fileOut = new FileOutputStream("c:/json/traveller.txt");
             Writer writer = new OutputStreamWriter(fileOut);
             Gson gson = new GsonBuilder().create();
             gson.toJson(traveller, writer);
@@ -30,5 +50,32 @@ public class Traveller implements Serializable {
             ioEx.printStackTrace();
         }
     }
+
+    public Traveller loadTraveller() throws IOException, ClassNotFoundException {
+        InputStream fileIn = new FileInputStream("/tmp/traveller.json");
+        Reader reader = new InputStreamReader(fileIn);
+        Gson gson = new GsonBuilder().create();
+        Traveller traveller = gson.fromJson(reader, Traveller.class);
+        reader.close();
+        return traveller;
+    }
+
+
+    // Aqui suscribimos el metodo de equals() de la clase generica `Object` que es de java de forma generica
+    @Override
+    public boolean equals(Object obj) {
+        // Si el `Object` que le pasamos es de tipo `Traveller` pasará el if()
+        if (obj instanceof Traveller){
+
+
+            // Creamos una variable de tipo `Traveller` pasando el objeto a este tipo de objeto
+            Traveller objTraveller = (Traveller)obj;
+
+            // Creamos el boolean con la condicion de que los nombres de los dos sean iguales, y no si son la misma instancia
+            return this.name == objTraveller.name && this.lastName == objTraveller.lastName;
+        }
+        return false;
+    }
+
 
 }
