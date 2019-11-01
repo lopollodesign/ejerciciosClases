@@ -13,8 +13,18 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-        Traveller newVicens = Factory.loadTraveller();
-        System.out.println(newVicens.toString());
+        Traveller vicens = new Traveller("Matias", "Álvarez Garau", new Date(1991, Calendar.DECEMBER, 13));
+        TransportType bike = new TransportType("Bike", 1f, 6f);
+        // Factory.saveModel(bike, "bike");
+        // Factory.saveModel(vicens, "traveller2");
+
+        Traveller myTraveller = Factory.loadModel("traveller2", Traveller.class);
+        TransportType myTransport = Factory.loadModel("bike", TransportType.class);
+
+        System.out.println(myTraveller.toString());
+        System.out.println(myTransport.toString());
+
+
 
         // CREACION DE DATOS ESTÁTICOS
         List<Traveller> travellers = Arrays.asList(
