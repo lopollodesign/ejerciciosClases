@@ -12,19 +12,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-
-        Traveller vicens = new Traveller("Matias", "Álvarez Garau", new Date(1991, Calendar.DECEMBER, 13));
-        TransportType bike = new TransportType("Bike", 1f, 6f);
-        // Factory.saveModel(bike, "bike");
-        // Factory.saveModel(vicens, "traveller2");
-
-        Traveller myTraveller = Factory.loadModel("traveller2", Traveller.class);
-        TransportType myTransport = Factory.loadModel("bike", TransportType.class);
-
-        System.out.println(myTraveller.toString());
-        System.out.println(myTransport.toString());
-
-
+        String SERIALIZABLE_PATH = "c:/json/";
+        String SERIALIZABLE_FORMAT = "txt";
 
         // CREACION DE DATOS ESTÁTICOS
         List<Traveller> travellers = Arrays.asList(
@@ -71,6 +60,22 @@ public class Main {
         listToString(destinations, "Destinations");
         listToString(hotels, "Hotels");
         listToString(activities, "Activities");
+
+
+
+        Traveller vicens = new Traveller("Matias", "Álvarez Garau", new Date(1991, Calendar.DECEMBER, 13));
+        TransportType bike = new TransportType("Bike", 1f, 6f);
+        TransportType car = new TransportType("Car", 1f, 6f);
+
+        Factory.saveModel( bike , SERIALIZABLE_PATH,"bike", SERIALIZABLE_FORMAT);
+        Factory.saveModel( car , SERIALIZABLE_PATH , "bike", SERIALIZABLE_FORMAT);
+        // Factory.saveModel(vicens, "traveller2");
+
+        Traveller myTraveller = Factory.loadModel(SERIALIZABLE_PATH,"traveller2", SERIALIZABLE_FORMAT, Traveller.class);
+        TransportType myTransport = Factory.loadModel(SERIALIZABLE_PATH,"bike", SERIALIZABLE_FORMAT, TransportType.class);
+
+        System.out.println(myTraveller.toString());
+        System.out.println(myTransport.toString());
 
     }
 
