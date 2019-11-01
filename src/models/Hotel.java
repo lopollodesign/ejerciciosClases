@@ -1,4 +1,4 @@
-package clases.trabajofinal;
+package models;
 
 public class Hotel extends Service {
     public Hotel(String name, Destination destination) {

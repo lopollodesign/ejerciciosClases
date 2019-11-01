@@ -1,7 +1,4 @@
-package clases.trabajofinal;
-
-import java.util.ArrayList;
-import java.util.List;
+package models;
 
 public abstract class Connection {
     private Destination departure;

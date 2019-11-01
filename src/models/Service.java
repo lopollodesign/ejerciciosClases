@@ -1,4 +1,4 @@
-package clases.trabajofinal;
+package models;
 
 public abstract class Service {
     private String name;

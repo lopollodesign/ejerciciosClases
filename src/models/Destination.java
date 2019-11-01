@@ -1,4 +1,4 @@
-package clases.trabajofinal;
+package models;
 
 import java.awt.Point;
 

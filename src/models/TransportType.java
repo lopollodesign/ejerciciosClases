@@ -1,4 +1,4 @@
-package clases.trabajofinal;
+package models;
 
 public class TransportType {
     private  String name;

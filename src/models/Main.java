@@ -1,6 +1,9 @@
-package clases.trabajofinal;
+package models;
+
+import factory.Factory;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,7 +11,10 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+        Traveller newVicens = Factory.loadTraveller();
+        System.out.println(newVicens.toString());
 
         // CREACION DE DATOS ESTÁTICOS
         List<Traveller> travellers = Arrays.asList(
@@ -55,10 +61,6 @@ public class Main {
         listToString(destinations, "Destinations");
         listToString(hotels, "Hotels");
         listToString(activities, "Activities");
-
-        Traveller vicens = new Traveller("Vicenç", "Álvarez Garau", new Date(1991, Calendar.DECEMBER, 13));
-        vicens.saveTraveller(vicens);
-
 
     }
 
