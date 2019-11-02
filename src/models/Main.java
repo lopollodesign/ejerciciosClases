@@ -14,11 +14,8 @@ public class Main {
 
         TravelAgent travelAgent = new TravelAgent(SERIALIZABLE_PATH, SERIALIZABLE_FORMAT);
         travelAgent.initData();
-
-        Destination[] destinations = travelAgent.getDestinations();
-        listToString(Arrays.asList(destinations), "Destinations");
-
     }
+
 
     private static void listToString(List objectsList, String listName) {
         String information;

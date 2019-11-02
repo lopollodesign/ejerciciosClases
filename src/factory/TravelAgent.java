@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class TravelAgent {
     private String SERIALIZABLE_PATH;
@@ -58,12 +59,25 @@ public class TravelAgent {
         Serial.saveArrayModel(Arrays.asList(this.transportTypes), SERIALIZABLE_PATH, "transportTypes", SERIALIZABLE_FORMAT);
     }
 
-    public Destination[] getDestinations() {
-        return destinations;
+    public Connection getRandomConnection() {
+        TransportType transportType = (TransportType) getRandomItemList(Arrays.asList(this.transportTypes));
+        Destination departure = (Destination) getRandomItemList(Arrays.asList(this.destinations));
+        Destination arrival = (Destination) getRandomItemList(Arrays.asList(this.destinations));
+        while (departure.equals(arrival)) {
+            arrival = (Destination) getRandomItemList(Arrays.asList(this.destinations));
+        }
+        return new Connection(departure, arrival, transportType);
+    }
+
+    private Object getRandomItemList(List list) {
+        Random random = new Random();
+        int randomIndex = random.nextInt(list.size());
+        return list.get(randomIndex);
     }
 
     public Travel createRandomTravel() {
-        // createTravel
+        Traveller traveller = (Traveller)getRandomItemList(Arrays.asList(this.travellers));
+
         return new Travel();
     }
 

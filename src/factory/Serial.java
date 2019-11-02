@@ -29,6 +29,7 @@ public class Serial {
         Destination[] t = gson.fromJson(reader, Destination[].class);
         reader.close();
         return t;
+
     }
 
     public static Hotel[] loadArrayHotelModel(String folderPath , String fileFormat) throws IOException {
