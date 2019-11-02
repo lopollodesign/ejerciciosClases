@@ -4,9 +4,7 @@ import factory.Factory;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
 
 public class Main {
@@ -15,68 +13,25 @@ public class Main {
         String SERIALIZABLE_PATH = "c:/json/";
         String SERIALIZABLE_FORMAT = "txt";
 
-        // CREACION DE DATOS ESTÁTICOS
-        List<Traveller> travellers = Arrays.asList(
-                new Traveller("Vicenç", "Álvarez Garau", new Date(1991, Calendar.DECEMBER, 13)),
-                new Traveller("Margalida", "Garau Mateu", new Date(1959, Calendar.NOVEMBER, 29)),
-                new Traveller("Vicente", "Álvarez Espinosa", new Date(1963, Calendar.DECEMBER, 4))
-        );
-        List<TransportType> transportTypes = Arrays.asList(
-                new TransportType("Bike", 1f, 6f),
-                new TransportType("Bus", 5f, 18f),
-                new TransportType("Train", 20f, 10f),
-                new TransportType("Boat", 80f, 14f),
-                new TransportType("Air plane", 5000f, 60f)
-        );
-        List<Destination> destinations = Arrays.asList(
-                new Destination("Barcelona", new Point(3, 33)),
-                new Destination("Madrid", new Point(6, 30)),
-                new Destination("Valencia", new Point(9, 27)),
-                new Destination("Palma", new Point(12, 24))
-        );
+//        Factory.saveArrayModel(destinations, SERIALIZABLE_PATH, "destinations", SERIALIZABLE_FORMAT);
+//        Factory.saveArrayModel(hotels, SERIALIZABLE_PATH, "hotels", SERIALIZABLE_FORMAT);
+//        Factory.saveArrayModel(activities, SERIALIZABLE_PATH, "activities", SERIALIZABLE_FORMAT);
+//        Factory.saveArrayModel(travellers, SERIALIZABLE_PATH, "travellers", SERIALIZABLE_FORMAT);
+//        Factory.saveArrayModel(transportTypes, SERIALIZABLE_PATH, "transportTypes", SERIALIZABLE_FORMAT);
 
-        List<Hotel> hotels = Arrays.asList(
-                new Hotel("Hotel Iberostar Mediterráneo", destinations.get(0)),
-                new Hotel("Casa Nadal", destinations.get(0)),
-                new Hotel("Hotel Príncipe Pío", destinations.get(1)),
-                new Hotel("Madrid Motion Hotels", destinations.get(1)),
-                new Hotel("Expo Hotel Valencia", destinations.get(2)),
-                new Hotel("Meliá Valencia", destinations.get(2)),
-                new Hotel("Hotel Abelay", destinations.get(3)),
-                new Hotel("OLA Hotel", destinations.get(3))
-        );
-        List<Activity> activities = Arrays.asList(
-                new Activity("Visita guiada al Parc Güell", destinations.get(0)),
-                new Activity("Día en la Casa Batllò", destinations.get(0)),
-                new Activity("Visita al Parque del retiro", destinations.get(1)),
-                new Activity("Tour al Valle de los Caídos", destinations.get(1)),
-                new Activity("Vuelta en bici por la Ciutat de les ciències", destinations.get(2)),
-                new Activity("Tapas en el casco antiguo", destinations.get(2)),
-                new Activity("Visita a La Seu", destinations.get(3)),
-                new Activity("Excursión al Castell d'Alarò", destinations.get(3))
-        );
+        // DESERIALIZACION
+        Destination[] destinations = Factory.loadArrayDestinationModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        Activity[] activities = Factory.loadArrayActivityModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        Hotel[] hotels = Factory.loadArrayHotelModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        Traveller[] travellers = Factory.loadArrayTravellerModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        TransportType[] transportTypes = Factory.loadArrayTransportTypeModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
 
         // OUTPUT
-        listToString(destinations, "Destinations");
-        listToString(hotels, "Hotels");
-        listToString(activities, "Activities");
-
-
-
-        Traveller vicens = new Traveller("Matias", "Álvarez Garau", new Date(1991, Calendar.DECEMBER, 13));
-        TransportType bike = new TransportType("Bike", 1f, 6f);
-        TransportType car = new TransportType("Car", 1f, 6f);
-
-        Factory.saveModel( bike , SERIALIZABLE_PATH,"bike", SERIALIZABLE_FORMAT);
-        Factory.saveModel( car , SERIALIZABLE_PATH , "bike", SERIALIZABLE_FORMAT);
-        // Factory.saveModel(vicens, "traveller2");
-
-        Traveller myTraveller = Factory.loadModel(SERIALIZABLE_PATH,"traveller2", SERIALIZABLE_FORMAT, Traveller.class);
-        TransportType myTransport = Factory.loadModel(SERIALIZABLE_PATH,"bike", SERIALIZABLE_FORMAT, TransportType.class);
-
-        System.out.println(myTraveller.toString());
-        System.out.println(myTransport.toString());
-
+        listToString(Arrays.asList(destinations), "Destinations");
+        listToString(Arrays.asList(hotels), "Hotels");
+        listToString(Arrays.asList(activities), "Activities");
+        listToString(Arrays.asList(travellers), "Travellers");
+        listToString(Arrays.asList(transportTypes), "Transport Types");
     }
 
 
@@ -85,7 +40,8 @@ public class Main {
         System.out.println(" ");
         System.out.println("----------------- ");
         System.out.println(" ");
-        System.out.println(listName + ":");
+        System.out.println(listName.toUpperCase() + ":");
+        System.out.println(" ");
         for (Object objectIndex : objectsList){
             information = objectIndex.toString();
             System.out.println(information);
