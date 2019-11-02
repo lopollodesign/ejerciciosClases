@@ -21,8 +21,8 @@ public class Main {
         listToString(Arrays.asList(allHotels), "hotels");
         listToString(Arrays.asList(allDestinations), "destinos");
 
-        Hotel myHotel = travelAgent.getRandomHotel(allDestinations[0]);
-        System.out.println(myHotel);
+        Activity myActivity = travelAgent.getRandomActivities(allDestinations[0]);
+        System.out.println(myActivity);
     }
 
 

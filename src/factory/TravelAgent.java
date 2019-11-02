@@ -51,12 +51,19 @@ public class TravelAgent {
         }
     }
 
-    public void saveData() {
-        Serial.saveArrayModel(Arrays.asList(this.destinations), SERIALIZABLE_PATH, "destinations", SERIALIZABLE_FORMAT);
-        Serial.saveArrayModel(Arrays.asList(this.hotels), SERIALIZABLE_PATH, "hotels", SERIALIZABLE_FORMAT);
-        Serial.saveArrayModel(Arrays.asList(this.activities), SERIALIZABLE_PATH, "activities", SERIALIZABLE_FORMAT);
-        Serial.saveArrayModel(Arrays.asList(this.travellers), SERIALIZABLE_PATH, "travellers", SERIALIZABLE_FORMAT);
-        Serial.saveArrayModel(Arrays.asList(this.transportTypes), SERIALIZABLE_PATH, "transportTypes", SERIALIZABLE_FORMAT);
+    public void saveData(String classType) {
+        switch (classType) {
+            case "destinations":
+                Serial.saveArrayModel(Arrays.asList(this.destinations), SERIALIZABLE_PATH, "destinations", SERIALIZABLE_FORMAT);
+            case "hotels":
+                Serial.saveArrayModel(Arrays.asList(this.hotels), SERIALIZABLE_PATH, "hotels", SERIALIZABLE_FORMAT);
+            case "activities":
+                Serial.saveArrayModel(Arrays.asList(this.activities), SERIALIZABLE_PATH, "activities", SERIALIZABLE_FORMAT);
+            case "travellers":
+                Serial.saveArrayModel(Arrays.asList(this.travellers), SERIALIZABLE_PATH, "travellers", SERIALIZABLE_FORMAT);
+            case "transportTypes":
+                Serial.saveArrayModel(Arrays.asList(this.transportTypes), SERIALIZABLE_PATH, "transportTypes", SERIALIZABLE_FORMAT);
+        }
     }
 
     public Connection getRandomConnection() {
@@ -85,6 +92,18 @@ public class TravelAgent {
         }
         int randomIndex = random.nextInt(destinationHotels.size());
         return destinationHotels.get(randomIndex);
+    }
+
+    public Activity getRandomActivities(Destination destination) {
+        Random random = new Random();
+        ArrayList<Activity> destinationActivities = new ArrayList<Activity>();
+        for (Activity activity : this.activities) {
+            if(activity.destination.equals(destination)) {
+                destinationActivities.add(activity);
+            }
+        }
+        int randomIndex = random.nextInt(destinationActivities.size());
+        return destinationActivities.get(randomIndex);
     }
 
     public Travel createRandomTravel() {
