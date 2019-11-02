@@ -25,4 +25,13 @@ public class Destination {
     public String toString(){
         return this.name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Destination){
+            Destination objDestination = (Destination) obj;
+            return this.name.equals(objDestination.name);
+        }
+        return false;
+    }
 }

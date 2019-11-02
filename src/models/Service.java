@@ -2,7 +2,7 @@ package models;
 
 public abstract class Service {
     private String name;
-    private Destination destination;
+    public Destination destination;
 
     public Service(String name, Destination destination) {
         this.name = name;
@@ -11,6 +11,6 @@ public abstract class Service {
 
     @Override
     public String toString(){
-        return this.name;
+        return this.name + ". Destination: " + this.destination;
     }
 }

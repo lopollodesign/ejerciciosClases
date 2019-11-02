@@ -75,9 +75,21 @@ public class TravelAgent {
         return list.get(randomIndex);
     }
 
+    public Hotel getRandomHotel(Destination destination) {
+        Random random = new Random();
+        ArrayList<Hotel> destinationHotels = new ArrayList<Hotel>();
+        for (Hotel hotel : this.hotels) {
+            if(hotel.destination.equals(destination)) {
+                destinationHotels.add(hotel);
+            }
+        }
+        int randomIndex = random.nextInt(destinationHotels.size());
+        return destinationHotels.get(randomIndex);
+    }
+
     public Travel createRandomTravel() {
         Traveller traveller = (Traveller)getRandomItemList(Arrays.asList(this.travellers));
-
+        Connection connection = getRandomConnection();
         return new Travel();
     }
 

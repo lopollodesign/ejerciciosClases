@@ -1,9 +1,10 @@
 package models;
 
+import factory.Serial;
 import factory.TravelAgent;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -14,6 +15,14 @@ public class Main {
 
         TravelAgent travelAgent = new TravelAgent(SERIALIZABLE_PATH, SERIALIZABLE_FORMAT);
         travelAgent.initData();
+
+        Destination[] allDestinations = Serial.loadArrayDestinationModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        Hotel[] allHotels = Serial.loadArrayHotelModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        listToString(Arrays.asList(allHotels), "hotels");
+        listToString(Arrays.asList(allDestinations), "destinos");
+
+        Hotel myHotel = travelAgent.getRandomHotel(allDestinations[0]);
+        System.out.println(myHotel);
     }
 
 
