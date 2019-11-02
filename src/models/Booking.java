@@ -20,4 +20,9 @@ public class Booking {
         return (int) diff / 1000 / 60 / 60 / 24;
     }
 
+    @Override
+    public String toString() {
+        return this.service + " || " + this.checkIn + " - " + this.checkOut + ". Total Days: " + this.stayDays + ". Total Price: " + this.totalPrice;
+    }
+
 }

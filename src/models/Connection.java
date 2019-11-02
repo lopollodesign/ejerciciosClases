@@ -11,4 +11,9 @@ public abstract class Connection {
     public float getDistance() {
         return this.distance = departure.getDistance(arrival);
     }
+
+    @Override
+    public String toString() {
+        return "Connection: " + this.departure + " to " + this.arrival;
+    }
 }

@@ -17,7 +17,7 @@ public class Traveller implements Serializable {
 
     @Override
     public String toString() {
-        return this.name;
+        return this.name + " " + this.lastName;
     }
 
     // Aqui suscribimos el metodo de equals() de la clase generica `Object` que es de java de forma generica

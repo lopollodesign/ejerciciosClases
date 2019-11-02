@@ -11,6 +11,6 @@ public abstract class Service {
 
     @Override
     public String toString(){
-        return this.name + " - " + this.destination.toString();
+        return this.name;
     }
 }

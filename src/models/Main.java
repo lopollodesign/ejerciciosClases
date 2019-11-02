@@ -1,8 +1,7 @@
 package models;
 
-import factory.Factory;
+import factory.Serial;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
@@ -13,18 +12,18 @@ public class Main {
         String SERIALIZABLE_PATH = "c:/json/";
         String SERIALIZABLE_FORMAT = "txt";
 
-//        Factory.saveArrayModel(destinations, SERIALIZABLE_PATH, "destinations", SERIALIZABLE_FORMAT);
-//        Factory.saveArrayModel(hotels, SERIALIZABLE_PATH, "hotels", SERIALIZABLE_FORMAT);
-//        Factory.saveArrayModel(activities, SERIALIZABLE_PATH, "activities", SERIALIZABLE_FORMAT);
-//        Factory.saveArrayModel(travellers, SERIALIZABLE_PATH, "travellers", SERIALIZABLE_FORMAT);
-//        Factory.saveArrayModel(transportTypes, SERIALIZABLE_PATH, "transportTypes", SERIALIZABLE_FORMAT);
+//        Serial.saveArrayModel(destinations, SERIALIZABLE_PATH, "destinations", SERIALIZABLE_FORMAT);
+//        Serial.saveArrayModel(hotels, SERIALIZABLE_PATH, "hotels", SERIALIZABLE_FORMAT);
+//        Serial.saveArrayModel(activities, SERIALIZABLE_PATH, "activities", SERIALIZABLE_FORMAT);
+//        Serial.saveArrayModel(travellers, SERIALIZABLE_PATH, "travellers", SERIALIZABLE_FORMAT);
+//        Serial.saveArrayModel(transportTypes, SERIALIZABLE_PATH, "transportTypes", SERIALIZABLE_FORMAT);
 
         // DESERIALIZACION
-        Destination[] destinations = Factory.loadArrayDestinationModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
-        Activity[] activities = Factory.loadArrayActivityModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
-        Hotel[] hotels = Factory.loadArrayHotelModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
-        Traveller[] travellers = Factory.loadArrayTravellerModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
-        TransportType[] transportTypes = Factory.loadArrayTransportTypeModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        Destination[] destinations = Serial.loadArrayDestinationModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        Activity[] activities = Serial.loadArrayActivityModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        Hotel[] hotels = Serial.loadArrayHotelModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        Traveller[] travellers = Serial.loadArrayTravellerModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        TransportType[] transportTypes = Serial.loadArrayTransportTypeModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
 
         // OUTPUT
         listToString(Arrays.asList(destinations), "Destinations");

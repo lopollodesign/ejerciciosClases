@@ -7,7 +7,7 @@ import models.*;
 import java.io.*;
 import java.util.List;
 
-public class Factory {
+public class Serial {
 
     public static void saveArrayModel(List objects , String folderPath , String fileName, String fileFormat) {
         try {
