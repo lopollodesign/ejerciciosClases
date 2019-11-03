@@ -8,26 +8,24 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
+
+        // Este trozo entero, lo que esta en el Main Pasara a ser una App sola
+
         String SERIALIZABLE_PATH = "c:/json/";
         String SERIALIZABLE_FORMAT = "txt";
-
         TravelAgent travelAgent = new TravelAgent(SERIALIZABLE_PATH, SERIALIZABLE_FORMAT);
         // travelAgent.saveData("all");
-
         travelAgent.initData();
-        // Travel myTravel = travelAgent.getRandomTravel();
 
         List<Travel> myTravels = travelAgent.getRandomTravelsList(6);
         // showTravelList(myTravels);
 
         HashMap<Integer, Travel> map = new HashMap<Integer, Travel>();
-
         int indexMap = 1;
         for (Travel travel: myTravels) {
             map.put(indexMap, travel);
             indexMap++;
         }
-
         Travel travelMap;
         for (int index = 1 ; index < map.size() ; index++ ){
             travelMap = map.get(index);
@@ -43,10 +41,33 @@ public class Main {
             }
         }
 
-
+//        System.out.println("¿Que quieres hacer?");
+//        System.out.println("Fijate en los codigos, siempre es una letra de la opcion y el numero del viaje.");
 //        Scanner scanner = new Scanner(System.in);
 //        String hello = scanner.nextLine();
+//        if (hello.equals("D1")) {
+//            System.out.println("¿Seguro que quieres borrar el Viaje 1? [Y]es / [N]o");
+//            hello = scanner.nextLine();
+//            if (hello.equals("Y")) {
+//                map.remove(1);
+//                for (int index = 1 ; index < map.size() ; index++ ){
+//                    if (map.containsKey(index)) {
+//                        travelMap = map.get(index);
+//                        showTravel(travelMap, index);
+//                    }
+//                }
+//            } else {
+//                System.out.println("Si, mejor no lo borres...");
+//            }
+//        } else {
+//            System.out.println("El codigo " + hello + " no es valido ¿Que quieres hacer ahora?");
+//            hello = scanner.nextLine();
+//        }
+//        App();
 //        System.out.println("Has puesto \"" + hello + "\"");
+    }
+
+    private static void App() {
 
     }
 
