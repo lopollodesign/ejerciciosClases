@@ -18,8 +18,8 @@ public class Booking {
         this.service = service;
     }
 
-    public void setService(Service service) {
-        this.service = service;
+    public float getTotalPrice() {
+        return totalPrice;
     }
 
     private static int daysCalcuate(Date checkIn, Date checkOut) {
@@ -31,5 +31,4 @@ public class Booking {
     public String toString() {
         return this.service + " || " + this.checkIn + " - " + this.checkOut + ". Total Days: " + this.stayDays + ". Total Price: " + this.totalPrice;
     }
-
 }

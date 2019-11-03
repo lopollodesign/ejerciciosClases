@@ -12,7 +12,8 @@ public class Connection {
         this.departure = departure;
         this.arrival = arrival;
         this.transportType = transportType;
-        this.price = getDistance() * transportType.getPricePerKm();
+        this.distance = getDistance();
+        this.price = this.distance * transportType.getPricePerKm();
     }
 
     public float getDistance() {
@@ -21,6 +22,10 @@ public class Connection {
 
     public Destination getArrival() {
         return arrival;
+    }
+
+    public float getPrice(){
+        return this.price;
     }
 
     @Override

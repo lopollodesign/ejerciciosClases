@@ -1,6 +1,6 @@
 package models;
 
-public abstract class Service {
+public abstract class Service implements Bookable {
     private String name;
     public Destination destination;
 
