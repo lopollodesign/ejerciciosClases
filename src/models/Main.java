@@ -1,8 +1,8 @@
 package models;
 
-import factory.Data;
 import factory.TravelAgent;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Main {
@@ -12,18 +12,22 @@ public class Main {
         String SERIALIZABLE_FORMAT = "txt";
 
         TravelAgent travelAgent = new TravelAgent(SERIALIZABLE_PATH, SERIALIZABLE_FORMAT);
-        //travelAgent.saveData("all");
+        // travelAgent.saveData("all");
+
         travelAgent.initData();
         Travel myTravel = travelAgent.getRandomTravel();
+        showTravelList(travelAgent.getRandomTravelsList(2));
 
-        System.out.println(myTravel);
+//        Scanner scanner = new Scanner(System.in);
+//        String hello = scanner.nextLine();
+//        System.out.println("Has puesto \"" + hello + "\"");
 
     }
 
     private static void listToString(List objectsList, String listName) {
         String information;
         System.out.println(" ");
-        System.out.println("----------------- ");
+        System.out.println("-----------------");
         System.out.println(" ");
         System.out.println(listName.toUpperCase() + ":");
         System.out.println(" ");
@@ -31,5 +35,79 @@ public class Main {
             information = objectIndex.toString();
             System.out.println(information);
         }
+    }
+
+    private static void showTravelList(List<Travel> list) {
+        int index = 1;
+        for (Travel travel : list) {
+            showTravel(travel, index);
+//            showTravelDetails(travel);
+            index++;
+        }
+        System.out.println("----");
+    }
+
+    private static void showOptions(int indexTravel) {
+        String deleteButton = createButton(indexTravel ,"D", "Delete travel " + indexTravel);
+        System.out.println("Options " + deleteButton);
+    }
+
+    private static String createButton(int numIndex, String code, String text) {
+        return "[ "+ code + numIndex + " - " + text +" ] ";
+    }
+
+    private static void showTravel(Travel travel, int index) {
+        System.out.println("----");
+        System.out.println(" ");
+        System.out.println("Travel " + index);
+        System.out.println(travel);
+        System.out.println("Price: " + prettyPrice(travel.getPrice()) + ". " + travel.getServices().size() + " Servicies");
+        System.out.println(" ");
+        showOptions(index);
+        System.out.println(" ");
+    }
+
+    private static void showTravelDetails(Travel travel) {
+        Connection connection = travel.getConnection();
+        TransportType transportType = connection.getTransportType();
+
+        System.out.println("===============");
+        System.out.println(" ");
+
+        System.out.println("Trip to " + travel.getDestination());
+        System.out.println("Reservation for " + travel.getTraveller());
+        System.out.println("(Total price: " + prettyPrice(travel.getPrice()) + ")");
+
+        System.out.println(" ");
+        System.out.println("----");
+        System.out.println(" ");
+
+        System.out.println("Connection (Total price: " + prettyPrice(connection.getPrice()) + ")");
+        System.out.println("Departure: " + connection.getDeparture() + " - " + travel.getCheckIn());
+        System.out.println("Arrival: " + connection.getArrival() + " - " + travel.getCheckOut());
+        System.out.println("Transport type: "+ transportType + ". Distance: " + connection.getDistance() + "Km. Price per Km: " + transportType.getPricePerKm());
+
+        System.out.println(" ");
+        System.out.println("----");
+        System.out.println(" ");
+
+        System.out.println(travel.getServices().size() + " Servicies (Total price " + prettyPrice(travel.getServicesPrice()) + ")");
+        System.out.println(" ");
+        for (Service service : travel.getServices()){
+            System.out.println((service.isHotel() ? "Hotel: " + service: "Activity: " + service));
+            System.out.println("Price: " + prettyPrice(service.getPrice()));
+            if (service.isHotel()) {
+                Hotel hotel = (Hotel)service;
+                System.out.println("(" + hotel.getStayDays() + " nights. Price per day " + prettyPrice(hotel.getDayPrice()) + ")");
+            }
+            System.out.println(" ");
+        }
+        System.out.println(" ");
+        System.out.println("===============");
+    }
+
+    public static String prettyPrice(float price){
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(price) + " €";
     }
 }
