@@ -10,6 +10,7 @@ public class Travel{
     private Traveller traveller;
     private Connection connection;
     private List<Service> services;
+    private Date checkIn = new Date();
     private Date checkOut;
     private int MAX_STAYDAYS = 15;
 
@@ -29,15 +30,23 @@ public class Travel{
         this.services = services;
     }
 
+    public Date getCheckIn() {
+        return checkIn;
+    }
+
     public Date getCheckOut() {
         return checkOut;
+    }
+
+    public Traveller getTraveller() {
+        return traveller;
     }
 
     public Connection getConnection() {
         return connection;
     }
 
-    public float getServicesPrice(){
+    public float getServicesPrice() {
         float totalPrice = 0;
         for (Service service: this.services){
             totalPrice += service.getPrice();
@@ -56,6 +65,28 @@ public class Travel{
         calendar.setTime(date);
         calendar.add(Calendar.DATE, days);
         return calendar.getTime();
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public Destination getDestination() {
+        return this.connection.getArrival();
+    }
+
+    public Hotel getHotel() {
+        Hotel searchHotel = null;
+        for (Service service: this.services) {
+            if (service.isHotel()) {
+                searchHotel = (Hotel)service;
+            }
+        }
+        return searchHotel;
+    }
+
+    public float getPrice(){
+        return getServicesPrice() + getConnection().getPrice();
     }
 
     @Override
