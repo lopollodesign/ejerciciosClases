@@ -12,8 +12,15 @@ public class Booking {
     private float dayPrice;
     private float totalPrice;
 
-    // Le añadimos un servicio
-    Service service;
+    private Service service;
+
+    public Booking(Service service) {
+        this.service = service;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
+    }
 
     private static int daysCalcuate(Date checkIn, Date checkOut) {
         long diff = checkOut.getTime() - checkIn.getTime();
