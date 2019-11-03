@@ -11,7 +11,11 @@ public class Destination {
         this.point = point;
     }
 
-    public float getDistance( Destination arrival ){
+    public String getName() {
+        return name;
+    }
+
+    public float getDistance(Destination arrival ){
         int departureX = this.point.x;
         int departureY = this.point.y;
         int arrivalX = arrival.point.x;

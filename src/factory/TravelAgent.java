@@ -15,6 +15,8 @@ public class TravelAgent {
     private List<Traveller> travellers;
     private List<TransportType> transportTypes;
 
+    private Data data = new Data();
+
     public TravelAgent(String path, String format) {
         this.SERIALIZABLE_PATH = path;
         this.SERIALIZABLE_FORMAT = format;
@@ -23,15 +25,21 @@ public class TravelAgent {
     public void saveData(String classType) {
         switch (classType) {
             case "destinations":
-                Serial.saveArrayModel(this.destinations, SERIALIZABLE_PATH, "destinations", SERIALIZABLE_FORMAT);
+                Serial.saveArrayModel(data.getDestinations(), SERIALIZABLE_PATH, "destinations", SERIALIZABLE_FORMAT);
             case "hotels":
-                Serial.saveArrayModel(this.hotels, SERIALIZABLE_PATH, "hotels", SERIALIZABLE_FORMAT);
+                Serial.saveArrayModel(data.getHotels(), SERIALIZABLE_PATH, "hotels", SERIALIZABLE_FORMAT);
             case "activities":
-                Serial.saveArrayModel(this.activities, SERIALIZABLE_PATH, "activities", SERIALIZABLE_FORMAT);
+                Serial.saveArrayModel(data.getActivities(), SERIALIZABLE_PATH, "activities", SERIALIZABLE_FORMAT);
             case "travellers":
-                Serial.saveArrayModel(this.travellers, SERIALIZABLE_PATH, "travellers", SERIALIZABLE_FORMAT);
+                Serial.saveArrayModel(data.getTravellers(), SERIALIZABLE_PATH, "travellers", SERIALIZABLE_FORMAT);
             case "transportTypes":
-                Serial.saveArrayModel(this.transportTypes, SERIALIZABLE_PATH, "transportTypes", SERIALIZABLE_FORMAT);
+                Serial.saveArrayModel(data.getTransportTypes(), SERIALIZABLE_PATH, "transportTypes", SERIALIZABLE_FORMAT);
+            default:
+                Serial.saveArrayModel(data.getDestinations(), SERIALIZABLE_PATH, "destinations", SERIALIZABLE_FORMAT);
+                Serial.saveArrayModel(data.getHotels(), SERIALIZABLE_PATH, "hotels", SERIALIZABLE_FORMAT);
+                Serial.saveArrayModel(data.getActivities(), SERIALIZABLE_PATH, "activities", SERIALIZABLE_FORMAT);
+                Serial.saveArrayModel(data.getTravellers(), SERIALIZABLE_PATH, "travellers", SERIALIZABLE_FORMAT);
+                Serial.saveArrayModel(data.getTransportTypes(), SERIALIZABLE_PATH, "transportTypes", SERIALIZABLE_FORMAT);
         }
     }
 
@@ -63,7 +71,7 @@ public class TravelAgent {
         }
     }
 
-    private Object getRandomItemList(List list) {
+    private static Object getRandomItemList(List list) {
         Random random = new Random();
         int randomIndex = random.nextInt(list.size());
         return list.get(randomIndex);
@@ -79,11 +87,12 @@ public class TravelAgent {
         return new Connection(departure, arrival, transportType);
     }
 
-    private Hotel getRandomHotel(Destination destination) {
+    private Hotel getRandomHotel(Destination destination, Date checkOut) {
         Random random = new Random();
         ArrayList<Hotel> destinationHotels = new ArrayList<Hotel>();
         for (Hotel hotel : this.hotels) {
             if(hotel.destination.equals(destination)) {
+                hotel.setCheckOut(checkOut);
                 destinationHotels.add(hotel);
             }
         }
@@ -118,25 +127,19 @@ public class TravelAgent {
         return selectedActivities;
     }
 
-    private Date getRandomDates(Date date , int days) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.DATE, days);
-        return calendar.getTime();
-    }
-
-    private ArrayList<Service> getRandomServices(Destination destination) {
+    private ArrayList<Service> getRandomServices(Destination destination, Date checkOut) {
         ArrayList<Service> servicesList = new ArrayList<Service>();
-        servicesList.add(getRandomHotel(destination));
+        servicesList.add(getRandomHotel(destination, checkOut));
         servicesList.addAll(getRandomActivities(destination));
         return servicesList;
     }
 
-    public Travel createRandomTravel() {
-        Traveller traveller = (Traveller)getRandomItemList(this.travellers);
-        Connection connection = getRandomConnection();
-        ArrayList<Service> services = getRandomServices(connection.getArrival());
-        return new Travel(traveller, connection, services);
+    public Travel getRandomTravel() {
+        Travel travel = new Travel();
+        travel.setTraveller((Traveller)getRandomItemList(this.travellers));
+        travel.setConnection(getRandomConnection());
+        ArrayList<Service> services = getRandomServices(travel.getConnection().getArrival(), travel.getCheckOut());
+        return travel;
     }
 
     public List<Travel> addTravel(Travel travel, List<Travel> travels){
