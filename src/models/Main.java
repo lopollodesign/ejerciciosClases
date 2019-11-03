@@ -15,8 +15,34 @@ public class Main {
         // travelAgent.saveData("all");
 
         travelAgent.initData();
-        Travel myTravel = travelAgent.getRandomTravel();
-        showTravelList(travelAgent.getRandomTravelsList(2));
+        // Travel myTravel = travelAgent.getRandomTravel();
+
+        List<Travel> myTravels = travelAgent.getRandomTravelsList(6);
+        // showTravelList(myTravels);
+
+        HashMap<Integer, Travel> map = new HashMap<Integer, Travel>();
+
+        int indexMap = 1;
+        for (Travel travel: myTravels) {
+            map.put(indexMap, travel);
+            indexMap++;
+        }
+
+        Travel travelMap;
+        for (int index = 1 ; index < map.size() ; index++ ){
+            travelMap = map.get(index);
+            showTravel(travelMap, index);
+        }
+
+        map.remove(2);
+
+        for (int index = 1 ; index < map.size() ; index++ ){
+            if (map.containsKey(index)) {
+                travelMap = map.get(index);
+                showTravel(travelMap, index);
+            }
+        }
+
 
 //        Scanner scanner = new Scanner(System.in);
 //        String hello = scanner.nextLine();
@@ -49,11 +75,12 @@ public class Main {
 
     private static void showOptions(int indexTravel) {
         String deleteButton = createButton(indexTravel ,"D", "Delete travel " + indexTravel);
-        System.out.println("Options " + deleteButton);
+        String openButton = createButton(indexTravel ,"O", "Open travel " + indexTravel);
+        System.out.println("Options " + openButton + deleteButton);
     }
 
     private static String createButton(int numIndex, String code, String text) {
-        return "[ "+ code + numIndex + " - " + text +" ] ";
+        return "["+ code + numIndex + "-" + text +"] ";
     }
 
     private static void showTravel(Travel travel, int index) {
