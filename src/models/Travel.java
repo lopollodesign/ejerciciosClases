@@ -3,7 +3,7 @@ package models;
 import java.util.Date;
 import java.util.List;
 
-public class Travel implements Bookable{
+public class Travel{
     private Traveller traveller;
     private Connection connection;
     private List<Booking> bookings;
@@ -23,11 +23,18 @@ public class Travel implements Bookable{
     }
 
     public float getBookingPrice(Booking booking){
-        return 3f;
+        return booking.getService().getPrice();
     }
 
-    @Override
+    public float getBookingsPrice(){
+        float totalPrice = 0;
+        for (Booking booking: this.bookings){
+            totalPrice += booking.getService().getPrice();
+        }
+        return totalPrice;
+    }
+
     public float getPrice() {
-        return 0;
+        return getConnectionPrice() + getBookingsPrice();
     }
 }

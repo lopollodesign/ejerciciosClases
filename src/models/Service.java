@@ -1,8 +1,9 @@
 package models;
 
-public abstract class Service implements Bookable {
+public abstract class Service {
     private String name;
     public Destination destination;
+    private float price;
 
     public Service(String name, Destination destination) {
         this.name = name;
@@ -23,5 +24,9 @@ public abstract class Service implements Bookable {
             return (this.name).equals(objService.name) && this.destination.equals(objService.destination);
         }
         return false;
+    }
+
+    public float getPrice() {
+        return this.price;
     }
 }

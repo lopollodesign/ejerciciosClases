@@ -18,6 +18,10 @@ public class Booking {
         this.service = service;
     }
 
+    public Service getService() {
+        return service;
+    }
+
     public float getTotalPrice() {
         return totalPrice;
     }

@@ -1,6 +1,6 @@
 package models;
 
-public class Connection {
+public class Connection{
     private Destination departure;
     private Destination arrival;
     private TransportType transportType;
