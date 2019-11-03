@@ -3,9 +3,7 @@ package factory;
 import models.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class TravelAgent {
     private String SERIALIZABLE_PATH;
@@ -118,6 +116,13 @@ public class TravelAgent {
             }
         } while ( selectedActivities.size() < randomQuantity );
         return selectedActivities;
+    }
+
+    private Date getRandomDates(Date date , int days) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, days);
+        return calendar.getTime();
     }
 
     private ArrayList<Service> getRandomServices(Destination destination) {

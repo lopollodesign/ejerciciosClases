@@ -4,9 +4,7 @@ import factory.Serial;
 import factory.TravelAgent;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
@@ -24,8 +22,22 @@ public class Main {
 
         ArrayList<Activity> myActivities = travelAgent.getRandomActivities(allDestinations.get(0));
         listToString(myActivities, "actividades");
+
+        Date myDate = new Date();
+        Date newDate = getRandomDates(myDate,3);
+        Date newDate2 = getRandomDates(myDate,103);
+
+        System.out.println("myDate: " + myDate);
+        System.out.println("newDate: " + newDate);
+        System.out.println("newDate2: " + newDate2);
     }
 
+    private static Date getRandomDates(Date date , int days) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, days);
+        return calendar.getTime();
+    }
 
     private static void listToString(List objectsList, String listName) {
         String information;
