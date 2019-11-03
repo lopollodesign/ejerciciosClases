@@ -34,11 +34,11 @@ public class Data {
     }
 
     private List<TransportType> transportTypes = Arrays.asList(
-            new TransportType("Bike", 1f, 6f),
-            new TransportType("Bus", 5f, 18f),
-            new TransportType("Train", 20f, 10f),
-            new TransportType("Boat", 80f, 14f),
-            new TransportType("Air plane", 5000f, 60f)
+            new TransportType("Bike", 0.05f, 6f),
+            new TransportType("Bus", 0.1f, 18f),
+            new TransportType("Train", .3f, 10f),
+            new TransportType("Boat", .4f, 14f),
+            new TransportType("Air plane", .5f, 60f)
     );
 
     public List<Destination> getDestinations() {
@@ -91,8 +91,9 @@ public class Data {
         List<Activity> autoActivity = new ArrayList<Activity>();
         for (Destination destination: this.destinations ) {
             autoActivity.add(new Activity("Visita guiada por " + destination.getName(), destination));
-            autoActivity.add(new Activity("Casco antigui de " + destination.getName(), destination));
+            autoActivity.add(new Activity("Casco antiguio de " + destination.getName(), destination));
             autoActivity.add(new Activity("Ruta de la cerveza en " + destination.getName(), destination));
+            autoActivity.add(new Activity("Puntos de atentados terristas en " + destination.getName(), destination));
         }
         return autoActivity;
     }
