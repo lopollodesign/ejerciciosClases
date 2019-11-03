@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import models.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Serial {
@@ -22,59 +24,59 @@ public class Serial {
         }
     }
 
-    public static Destination[] loadArrayDestinationModel(String folderPath , String fileFormat) throws IOException {
+    public static List<Destination> loadArrayDestinationModel(String folderPath , String fileFormat) throws IOException {
         InputStream fileIn = new FileInputStream(folderPath + "destinations." + fileFormat);
         Reader reader = new InputStreamReader(fileIn);
         Gson gson = new GsonBuilder().create();
-        Destination[] t = gson.fromJson(reader, Destination[].class);
+        List<Destination> list = Arrays.asList(gson.fromJson(reader, Destination[].class));
         reader.close();
-        return t;
+        return list;
 
     }
 
-    public static Hotel[] loadArrayHotelModel(String folderPath , String fileFormat) throws IOException {
+    public static List<Hotel> loadArrayHotelModel(String folderPath , String fileFormat) throws IOException {
         InputStream fileIn = new FileInputStream(folderPath + "hotels." + fileFormat);
         Reader reader = new InputStreamReader(fileIn);
         Gson gson = new GsonBuilder().create();
-        Hotel[] t = gson.fromJson(reader, Hotel[].class);
+        List<Hotel> list = Arrays.asList(gson.fromJson(reader, Hotel[].class));
         reader.close();
-        return t;
+        return list;
     }
 
-    public static Activity[] loadArrayActivityModel(String folderPath , String fileFormat) throws IOException {
+    public static List<Activity> loadArrayActivityModel(String folderPath , String fileFormat) throws IOException {
         InputStream fileIn = new FileInputStream(folderPath + "activities." + fileFormat);
         Reader reader = new InputStreamReader(fileIn);
         Gson gson = new GsonBuilder().create();
-        Activity[] t = gson.fromJson(reader, Activity[].class);
+        List<Activity> list = Arrays.asList(gson.fromJson(reader, Activity[].class));
         reader.close();
-        return t;
+        return list;
     }
 
-    public static Traveller[] loadArrayTravellerModel(String folderPath , String fileFormat) throws IOException {
+    public static List<Traveller> loadArrayTravellerModel(String folderPath , String fileFormat) throws IOException {
         InputStream fileIn = new FileInputStream(folderPath + "travellers." + fileFormat);
         Reader reader = new InputStreamReader(fileIn);
         Gson gson = new GsonBuilder().create();
-        Traveller[] t = gson.fromJson(reader, Traveller[].class);
+        List<Traveller> list = Arrays.asList(gson.fromJson(reader, Traveller[].class));
         reader.close();
-        return t;
+        return list;
     }
 
-    public static TransportType[] loadArrayTransportTypeModel(String folderPath , String fileFormat) throws IOException {
+    public static List<TransportType> loadArrayTransportTypeModel(String folderPath , String fileFormat) throws IOException {
         InputStream fileIn = new FileInputStream(folderPath + "transporttypes." + fileFormat);
         Reader reader = new InputStreamReader(fileIn);
         Gson gson = new GsonBuilder().create();
-        TransportType[] t = gson.fromJson(reader, TransportType[].class);
+        List<TransportType> list = Arrays.asList(gson.fromJson(reader, TransportType[].class));
         reader.close();
-        return t;
+        return list;
     }
 
-    public static Travel[] loadArrayTravelModel(String folderPath , String fileFormat) throws IOException {
+    public static List<Travel> loadArrayTravelModel(String folderPath , String fileFormat) throws IOException {
         InputStream fileIn = new FileInputStream(folderPath + "travels." + fileFormat);
         Reader reader = new InputStreamReader(fileIn);
         Gson gson = new GsonBuilder().create();
-        Travel[] t = gson.fromJson(reader, Travel[].class);
+        List<Travel> list = Arrays.asList(gson.fromJson(reader, Travel[].class));
         reader.close();
-        return t;
+        return list;
     }
 
     // ==================================

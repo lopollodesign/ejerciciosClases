@@ -13,4 +13,13 @@ public abstract class Service {
     public String toString(){
         return this.name + ". Destination: " + this.destination;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Service){
+            Service objService = (Service) obj;
+            return (this.name + this.destination).equals(objService.name + objService.destination);
+        }
+        return false;
+    }
 }

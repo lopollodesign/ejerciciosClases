@@ -4,6 +4,7 @@ import factory.Serial;
 import factory.TravelAgent;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,13 +17,13 @@ public class Main {
         TravelAgent travelAgent = new TravelAgent(SERIALIZABLE_PATH, SERIALIZABLE_FORMAT);
         travelAgent.initData();
 
-        Destination[] allDestinations = Serial.loadArrayDestinationModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
-        Hotel[] allHotels = Serial.loadArrayHotelModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
-        listToString(Arrays.asList(allHotels), "hotels");
-        listToString(Arrays.asList(allDestinations), "destinos");
+        List<Destination> allDestinations = Serial.loadArrayDestinationModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        List<Hotel> allHotels = Serial.loadArrayHotelModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+        listToString(allHotels, "hotels");
+        listToString(allDestinations, "destinos");
 
-        Activity myActivity = travelAgent.getRandomActivities(allDestinations[0]);
-        System.out.println(myActivity);
+        ArrayList<Activity> myActivities = travelAgent.getRandomActivities(allDestinations.get(0));
+        listToString(myActivities, "actividades");
     }
 
 
