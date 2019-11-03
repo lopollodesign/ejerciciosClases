@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Random;
+
 public abstract class Service {
     private String name;
     public Destination destination;
@@ -8,11 +10,13 @@ public abstract class Service {
     public Service(String name, Destination destination) {
         this.name = name;
         this.destination = destination;
+        Random random = new Random();
+        this.price = random.nextFloat() * 100;
     }
 
     @Override
     public String toString(){
-        return this.name + ". Destination: " + this.destination;
+        return this.name;
     }
 
     @Override
@@ -28,5 +32,9 @@ public abstract class Service {
 
     public float getPrice() {
         return this.price;
+    }
+
+    public boolean isHotel(){
+        return this instanceof Hotel;
     }
 }
