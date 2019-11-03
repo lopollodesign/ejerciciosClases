@@ -7,7 +7,6 @@ public class Hotel extends Service {
     private Date checkIn = new Date();
     private Date checkOut;
     private int stayDays;
-    private float dayPrice;
 
     public Hotel(String name, Destination destination) {
         super(name, destination);
@@ -15,7 +14,7 @@ public class Hotel extends Service {
 
     public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
-//        this.stayDays = daysCalcuate(this.checkIn, this.checkOut);
+        this.stayDays = daysCalcuate(this.checkIn, this.checkOut);
     }
 
     private static int daysCalcuate(Date checkIn, Date checkOut) {
@@ -25,7 +24,11 @@ public class Hotel extends Service {
 
     @Override
     public float getPrice() {
-        return this.stayDays * this.dayPrice;
+        return this.stayDays * super.getPrice();
+    }
+
+    public float getDayPrice() {
+        return super.getPrice();
     }
 
     public int getStayDays() {
