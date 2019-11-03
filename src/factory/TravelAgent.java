@@ -120,24 +120,21 @@ public class TravelAgent {
         return selectedActivities;
     }
 
-    private ArrayList<Booking> getRandomBookings(Destination destination) {
-        ArrayList<Booking> bookingsList = new ArrayList<Booking>();
-        bookingsList.add(new Booking(getRandomHotel(destination)));
-        ArrayList<Activity> activities = getRandomActivities(destination);
-        for (Activity activity : activities){
-            bookingsList.add(new Booking(activity));
-        }
-        return bookingsList;
+    private ArrayList<Service> getRandomServices(Destination destination) {
+        ArrayList<Service> servicesList = new ArrayList<Service>();
+        servicesList.add(getRandomHotel(destination));
+        servicesList.addAll(getRandomActivities(destination));
+        return servicesList;
     }
 
     public Travel createRandomTravel() {
         Traveller traveller = (Traveller)getRandomItemList(this.travellers);
         Connection connection = getRandomConnection();
-        ArrayList<Booking> bookings = getRandomBookings(connection.getArrival());
-        return new Travel(traveller, connection, bookings);
+        ArrayList<Service> services = getRandomServices(connection.getArrival());
+        return new Travel(traveller, connection, services);
     }
 
-    public Travel[] addTravel(Travel travel, Travel[] travels){
+    public List<Travel> addTravel(Travel travel, List<Travel> travels){
         // Travel newTravel = createRandomTravel()
         // travels.add(newTravel)
         return travels;
@@ -147,7 +144,7 @@ public class TravelAgent {
         // delete travel
     }
 
-    public List getTravels(){
+    public List<Travel> getTravels(){
         return new ArrayList<Travel>();
     }
 

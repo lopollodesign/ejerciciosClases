@@ -6,35 +6,31 @@ import java.util.List;
 public class Travel{
     private Traveller traveller;
     private Connection connection;
-    private List<Booking> bookings;
+    private List<Service> services;
 
     private Date checkIn;
     private Date checkOut;
     private float totalPrice;
 
-    public Travel(Traveller traveller, Connection connection, List<Booking> bookings) {
+    public Travel(Traveller traveller, Connection connection, List<Service> services) {
         this.traveller = traveller;
         this.connection = connection;
-        this.bookings = bookings;
+        this.services = services;
     }
 
     public float getConnectionPrice() {
         return connection.getPrice();
     }
 
-    public float getBookingPrice(Booking booking){
-        return booking.getService().getPrice();
-    }
-
-    public float getBookingsPrice(){
+    public float getServicesPrice(){
         float totalPrice = 0;
-        for (Booking booking: this.bookings){
-            totalPrice += booking.getService().getPrice();
+        for (Service service: this.services){
+            totalPrice += service.getPrice();
         }
         return totalPrice;
     }
 
     public float getPrice() {
-        return getConnectionPrice() + getBookingsPrice();
+        return getConnectionPrice() + getServicesPrice();
     }
 }
