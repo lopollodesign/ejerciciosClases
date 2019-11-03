@@ -20,12 +20,20 @@ public class Connection{
         return this.distance = departure.getDistance(arrival);
     }
 
+    public Destination getDeparture() {
+        return departure;
+    }
+
     public Destination getArrival() {
         return arrival;
     }
 
     public float getPrice(){
         return this.price;
+    }
+
+    public TransportType getTransportType() {
+        return transportType;
     }
 
     @Override
