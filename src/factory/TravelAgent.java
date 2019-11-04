@@ -76,6 +76,29 @@ public class TravelAgent {
         }
     }
 
+    private static String getLocator() {
+        Random random = new Random();
+        String locator = "";
+        String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        locator += Integer.toString(random.nextInt(9));
+        locator += Integer.toString(random.nextInt(9));
+        locator += abc.charAt(random.nextInt(abc.length()));
+        locator += abc.charAt(random.nextInt(abc.length()));
+        return locator;
+    }
+
+    public HashMap<String,Travel> getRandomTravelsHashMap(int quantity) {
+        HashMap<String, Travel> hashMap = new HashMap<>();
+        String locator;
+        for ( hashMap.size() ; hashMap.size() < quantity;) {
+            locator = getLocator();
+            if (!hashMap.containsKey(locator)){
+                hashMap.put(getLocator(), getRandomTravel());
+            }
+        }
+        return hashMap;
+    }
+
     public List<Travel> getRandomTravelsList(int quantity) {
         List<Travel> list = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
@@ -84,7 +107,7 @@ public class TravelAgent {
         return list;
     }
 
-    public Travel getRandomTravel() {
+    private Travel getRandomTravel() {
         Travel travel = new Travel();
         travel.setTraveller((Traveller)getRandomItemList(this.travellers));
         travel.setConnection(getRandomConnection());
@@ -111,7 +134,7 @@ public class TravelAgent {
 
     private Hotel getRandomHotel(Destination destination, Date checkOut) {
         Random random = new Random();
-        ArrayList<Hotel> destinationHotels = new ArrayList<Hotel>();
+        ArrayList<Hotel> destinationHotels = new ArrayList<>();
         for (Hotel hotel : this.hotels) {
             if(hotel.destination.equals(destination)) {
                 hotel.setCheckOut(checkOut);
@@ -123,7 +146,7 @@ public class TravelAgent {
     }
 
     private ArrayList<Activity> getDestinationActivities(Destination destination) {
-        ArrayList<Activity> destinationActivities = new ArrayList<Activity>();
+        ArrayList<Activity> destinationActivities = new ArrayList<>();
         for (Activity activity : this.activities) {
             if(activity.destination.equals(destination)) {
                 destinationActivities.add(activity);
@@ -132,9 +155,9 @@ public class TravelAgent {
         return destinationActivities;
     }
 
-    public ArrayList<Activity> getRandomActivities(Destination destination) {
+    private ArrayList<Activity> getRandomActivities(Destination destination) {
         ArrayList<Activity> destinationActivities = getDestinationActivities(destination);
-        ArrayList<Activity> selectedActivities = new ArrayList<Activity>();
+        ArrayList<Activity> selectedActivities = new ArrayList<>();
         Activity addedActivity;
         Random random = new Random();
         int randomQuantity = random.nextInt(destinationActivities.size());
@@ -150,7 +173,7 @@ public class TravelAgent {
     }
 
     private ArrayList<Service> getRandomServices(Destination destination, Date checkOut) {
-        ArrayList<Service> servicesList = new ArrayList<Service>();
+        ArrayList<Service> servicesList = new ArrayList<>();
         servicesList.add(getRandomHotel(destination, checkOut));
         servicesList.addAll(getRandomActivities(destination));
         return servicesList;

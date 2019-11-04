@@ -17,29 +17,8 @@ public class Main {
         // travelAgent.saveData("all");
         travelAgent.initData();
 
-        List<Travel> myTravels = travelAgent.getRandomTravelsList(6);
-        // showTravelList(myTravels);
-
-        HashMap<Integer, Travel> map = new HashMap<Integer, Travel>();
-        int indexMap = 1;
-        for (Travel travel: myTravels) {
-            map.put(indexMap, travel);
-            indexMap++;
-        }
-        Travel travelMap;
-        for (int index = 1 ; index < map.size() ; index++ ){
-            travelMap = map.get(index);
-            showTravel(travelMap, index);
-        }
-
-        map.remove(2);
-
-        for (int index = 1 ; index < map.size() ; index++ ){
-            if (map.containsKey(index)) {
-                travelMap = map.get(index);
-                showTravel(travelMap, index);
-            }
-        }
+        HashMap<String, Travel> map = travelAgent.getRandomTravelsHashMap(6);
+        showTravelList(map);
 
 //        System.out.println("¿Que quieres hacer?");
 //        System.out.println("Fijate en los codigos, siempre es una letra de la opcion y el numero del viaje.");
@@ -73,46 +52,45 @@ public class Main {
 
     private static void listToString(List objectsList, String listName) {
         String information;
-        System.out.println(" ");
+        System.out.println();
         System.out.println("-----------------");
-        System.out.println(" ");
+        System.out.println();
         System.out.println(listName.toUpperCase() + ":");
-        System.out.println(" ");
+        System.out.println();
         for (Object objectIndex : objectsList){
             information = objectIndex.toString();
             System.out.println(information);
         }
     }
 
-    private static void showTravelList(List<Travel> list) {
-        int index = 1;
-        for (Travel travel : list) {
-            showTravel(travel, index);
-//            showTravelDetails(travel);
-            index++;
+    private static void showTravelList(HashMap<String, Travel> map) {
+        for (String key : map.keySet()) {
+            showTravel(map.get(key), key);
         }
         System.out.println("----");
     }
 
-    private static void showOptions(int indexTravel) {
-        String deleteButton = createButton(indexTravel ,"D", "Delete travel " + indexTravel);
-        String openButton = createButton(indexTravel ,"O", "Open travel " + indexTravel);
-        System.out.println("Options " + openButton + deleteButton);
+    private static void showOptions(String indexTravel) {
+        String deleteButton = createButton(indexTravel ,"D", "Delete travel");
+        String openButton = createButton(indexTravel ,"O", "Open travel");
+        System.out.println("Options:");
+        System.out.println(openButton);
+        System.out.println(deleteButton);
     }
 
-    private static String createButton(int numIndex, String code, String text) {
-        return "["+ code + numIndex + "-" + text +"] ";
+    private static String createButton(String locator, String code, String text) {
+        return text + ". Insert --> [" + code + locator + "] ";
     }
 
-    private static void showTravel(Travel travel, int index) {
+    private static void showTravel(Travel travel, String index) {
         System.out.println("----");
-        System.out.println(" ");
-        System.out.println("Travel " + index);
+        System.out.println();
+        System.out.println("Travel [" + index + "]");
         System.out.println(travel);
         System.out.println("Price: " + prettyPrice(travel.getPrice()) + ". " + travel.getServices().size() + " Servicies");
-        System.out.println(" ");
+        System.out.println();
         showOptions(index);
-        System.out.println(" ");
+        System.out.println();
     }
 
     private static void showTravelDetails(Travel travel) {
@@ -120,27 +98,27 @@ public class Main {
         TransportType transportType = connection.getTransportType();
 
         System.out.println("===============");
-        System.out.println(" ");
+        System.out.println();
 
         System.out.println("Trip to " + travel.getDestination());
         System.out.println("Reservation for " + travel.getTraveller());
         System.out.println("(Total price: " + prettyPrice(travel.getPrice()) + ")");
 
-        System.out.println(" ");
+        System.out.println();
         System.out.println("----");
-        System.out.println(" ");
+        System.out.println();
 
         System.out.println("Connection (Total price: " + prettyPrice(connection.getPrice()) + ")");
         System.out.println("Departure: " + connection.getDeparture() + " - " + travel.getCheckIn());
         System.out.println("Arrival: " + connection.getArrival() + " - " + travel.getCheckOut());
         System.out.println("Transport type: "+ transportType + ". Distance: " + connection.getDistance() + "Km. Price per Km: " + transportType.getPricePerKm());
 
-        System.out.println(" ");
+        System.out.println();
         System.out.println("----");
-        System.out.println(" ");
+        System.out.println();
 
         System.out.println(travel.getServices().size() + " Servicies (Total price " + prettyPrice(travel.getServicesPrice()) + ")");
-        System.out.println(" ");
+        System.out.println();
         for (Service service : travel.getServices()){
             System.out.println((service.isHotel() ? "Hotel: " + service: "Activity: " + service));
             System.out.println("Price: " + prettyPrice(service.getPrice()));
@@ -148,9 +126,9 @@ public class Main {
                 Hotel hotel = (Hotel)service;
                 System.out.println("(" + hotel.getStayDays() + " nights. Price per day " + prettyPrice(hotel.getDayPrice()) + ")");
             }
-            System.out.println(" ");
+            System.out.println();
         }
-        System.out.println(" ");
+        System.out.println();
         System.out.println("===============");
     }
 
