@@ -1,6 +1,6 @@
-package factory;
+package trabajofinal.factory;
 
-import models.*;
+import trabajofinal.models.*;
 
 import java.io.IOException;
 import java.util.*;

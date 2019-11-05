@@ -1,4 +1,4 @@
-package models;
+package trabajofinal.models;
 
 import java.util.Random;
 

@@ -1,8 +1,8 @@
-package factory;
+package trabajofinal.factory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import models.*;
+import trabajofinal.models.*;
 
 import java.io.*;
 import java.util.Arrays;

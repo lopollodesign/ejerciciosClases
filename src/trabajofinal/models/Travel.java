@@ -1,4 +1,6 @@
-package models;
+package trabajofinal.models;
+
+import trabajofinal.utils.Utils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -92,5 +94,12 @@ public class Travel{
     @Override
     public String toString() {
         return "Trip to " + this.connection.getArrival().toString() + ". Traveller: " + this.traveller.toString();
+    }
+
+    public String simplePattern() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.toString()+"\n");
+        sb.append("Price: ").append(Utils.prettyPrice(this.getPrice())).append(". ").append(this.getServices().size()).append(" Servicies");
+        return sb.toString();
     }
 }
