@@ -2,42 +2,53 @@ import trabajofinal.models.*;
 import trabajofinal.utils.Utils;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class App {
 
-    private static void listToString(List objectsList, String listName) {
-        String information;
-        System.out.println();
-        System.out.println(getSign("s-lg"));
-        System.out.println();
-        System.out.println(listName.toUpperCase() + ":");
-        System.out.println();
-        for (Object objectIndex : objectsList){
-            information = objectIndex.toString();
-            System.out.println(information);
-        }
-        System.out.println(getSign("s-lg"));
-    }
+
+    // ESTO ESTABA AQUI CUANDO FUNCIONABA BIEN, AHORA ESTA EN EL TRAVEL AGENT Y NO FUNCIONA
+
+//    private HashMap<Character, String> optionsCharacter = new HashMap<>();
+//
+//    public App() {
+//        this.optionsCharacter.put('O', "Open");
+//        this.optionsCharacter.put('D', "Delete");
+//    }
+//
+//    public HashMap<Character, String> getHashMap() {
+//        return optionsCharacter;
+//    }
+//
+//    public boolean hasOptionCode(char letter) {
+//        String clear = Character.toString(letter).toUpperCase();
+//        return this.optionsCharacter.containsKey(clear.charAt(0));
+//    }
+//
+//    public static boolean hasTravelOption(String in, HashMap<String, Travel> map){
+//        App app = new App();
+//        String key = in.substring(1);
+//        return app.hasOptionCode(in.charAt(0)) && map.containsKey(key);
+//    }
 
     static void showTravelList(HashMap<String, Travel> map) {
+        StringBuilder sb = new StringBuilder();
         for (String locator : map.keySet()) {
-            sbTravel(map.get(locator), locator);
-            System.out.println(sbTravel(map.get(locator), locator) + getSign("intro"));
-            showOptions(locator);
+            sb.append(simpleTravel(map.get(locator), locator)).append(getSign("intro--d"));
+            sb.append(travelOptions(locator));
         }
-        System.out.println(getSign("s-xs"));
+        System.out.println(sb.toString());
+
     }
 
-    private static void showOptions(String locator) {
-        String deleteButton = createButton(locator ,"D", "Delete travel");
-        String openButton = createButton(locator ,"O", "Open travel");
-        System.out.println("Options:");
-        System.out.println(openButton);
-        System.out.println(deleteButton);
+    private static String travelOptions(String locator) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Options:\n");
+        sb.append(createButton(locator, "D", "Delete travel")).append(getSign("intro"));
+        sb.append(createButton(locator, "O", "Open travel")).append(getSign("intro"));
+        return sb.toString();
     }
 
-    private static String sbTravel(Travel travel, String locator) {
+    private static String simpleTravel(Travel travel, String locator) {
         StringBuilder sb = new StringBuilder();
         sb.append(getSign("s-xs"));
         sb.append(travelTitle(locator));
@@ -114,3 +125,42 @@ public class App {
         return " ";
     }
 }
+
+//        System.out.println("¿Que quieres hacer?");
+//        System.out.println("Fijate en los codigos, siempre es una letra de la opcion y el numero del viaje.");
+//        Scanner scanner = new Scanner(System.in);
+//        String hello = scanner.nextLine();
+//        if (hello.equals("D1")) {
+//            System.out.println("¿Seguro que quieres borrar el Viaje 1? [Y]es / [N]o");
+//            hello = scanner.nextLine();
+//            if (hello.equals("Y")) {
+//                map.remove(1);
+//                for (int index = 1 ; index < map.size() ; index++ ){
+//                    if (map.containsKey(index)) {
+//                        travelMap = map.get(index);
+//                        showTravel(travelMap, index);
+//                    }
+//                }
+//            } else {
+//                System.out.println("Si, mejor no lo borres...");
+//            }
+//        } else {
+//            System.out.println("El codigo " + hello + " no es valido ¿Que quieres hacer ahora?");
+//            hello = scanner.nextLine();
+//        }
+//        App();
+//        System.out.println("Has puesto \"" + hello + "\"");
+
+//private static void listToString(List objectsList, String listName) {
+//    String information;
+//    System.out.println();
+//    System.out.println(getSign("s-lg"));
+//    System.out.println();
+//    System.out.println(listName.toUpperCase() + ":");
+//    System.out.println();
+//    for (Object objectIndex : objectsList){
+//        information = objectIndex.toString();
+//        System.out.println(information);
+//    }
+//    System.out.println(getSign("s-lg"));
+//}

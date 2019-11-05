@@ -17,9 +17,13 @@ public class TravelAgent {
 
     private Data data = new Data();
 
+    private HashMap<Character, String> optionsCharacter = new HashMap<>();
+
     public TravelAgent(String path, String format) {
         this.SERIALIZABLE_PATH = path;
         this.SERIALIZABLE_FORMAT = format;
+        this.optionsCharacter.put('O', "Open");
+        this.optionsCharacter.put('D', "Delete");
     }
 
     public void saveData(String classType) {
@@ -177,6 +181,21 @@ public class TravelAgent {
         servicesList.add(getRandomHotel(destination, checkOut));
         servicesList.addAll(getRandomActivities(destination));
         return servicesList;
+    }
+
+    public HashMap<Character, String> getHashMap() {
+        return optionsCharacter;
+    }
+
+    private boolean hasOptionCode(char letter) {
+        String clear = Character.toString(letter).toUpperCase();
+        return this.optionsCharacter.containsKey(clear.charAt(0));
+    }
+
+    public static boolean hasTravelOption(String in, HashMap<String, Travel> map){
+        TravelAgent travelAgent = new TravelAgent("c:/json/", ".text");
+        String key = in.substring(1);
+        return travelAgent.hasOptionCode(in.charAt(0)) && map.containsKey(key);
     }
 
     public List<Travel> addTravel(Travel travel, List<Travel> travels){
