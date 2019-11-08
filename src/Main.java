@@ -1,4 +1,3 @@
-import trabajofinal.factory.Serial;
 import trabajofinal.factory.TravelAgent;
 import trabajofinal.models.*;
 
@@ -24,15 +23,11 @@ public class Main {
     }
 
     private static void initApp(TravelAgent travelAgent, boolean initial) throws IOException {
-        String SERIALIZABLE_PATH = "c:/json/";
-        String SERIALIZABLE_FORMAT = "txt";
-        HashMap<Character, String> optionsTravels = travelAgent.getHashMap();
         Scanner scanner = new Scanner(System.in);
 
-        // ERROR: Al iniciarse mas abajo la app se vuelve a iniciar este Mapa, hay que guardalo ya en el Json, porque sino siempre sera diferente
-
         HashMap<String, Travel> map;
-        map = Serial.loadHashMapTravelModel(SERIALIZABLE_PATH, SERIALIZABLE_FORMAT);
+//        map = Serial.loadHashMapTravelModel(SERIALIZABLE_PATH, SERIALIZABLE_FORMAT);
+        map = travelAgent.getRandomTravelsHashMap(6);
 
         if (initial){
             // map = travelAgent.getRandomTravelsHashMap(6);
@@ -40,8 +35,9 @@ public class Main {
             App.showTravelList(map);
         }
         String scannerIn = scanner.nextLine();
+
         if (TravelAgent.hasTravelOption(scannerIn, map)) {
-            System.out.println("Estas dentro");
+            TravelAgent.doOption(scannerIn);
         } else {
             System.out.println("Esa opcion no existe. Vuelve a intentarlo");
             initApp(travelAgent, false);

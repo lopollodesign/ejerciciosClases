@@ -183,7 +183,7 @@ public class TravelAgent {
         return servicesList;
     }
 
-    public HashMap<Character, String> getHashMap() {
+    public HashMap<Character, String> getHashMapOptions() {
         return optionsCharacter;
     }
 
@@ -192,11 +192,30 @@ public class TravelAgent {
         return this.optionsCharacter.containsKey(clear.charAt(0));
     }
 
+    // Aqui comprobamos que el codigo que nos ha pasado es valido
+    // Primero si la letra esta entre las opciones que se le ofrece
+    // Y si el codigo del Travel es real
     public static boolean hasTravelOption(String in, HashMap<String, Travel> map){
         TravelAgent travelAgent = new TravelAgent("c:/json/", ".text");
         String key = in.substring(1);
         return travelAgent.hasOptionCode(in.charAt(0)) && map.containsKey(key);
     }
+    
+    public static void doOption(String key) {
+        TravelAgent travelAgent = new TravelAgent("c:/json/", ".text");
+        Character typeOption = key.charAt(0);
+        String travelKey = key.substring(1);
+        String nameOption = travelAgent.getHashMapOptions().get(typeOption);
+        System.out.println("vas a " + nameOption + " el viaje " + typeOption +travelKey);
+        switch (nameOption){
+            case "Open":
+                System.out.println("Open");
+                break;
+            case "Delete":
+                System.out.println("Deletesss");
+                break;
+        }
+    } 
 
     public List<Travel> addTravel(Travel travel, List<Travel> travels){
         // Travel newTravel = createRandomTravel()
