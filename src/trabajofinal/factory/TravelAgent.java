@@ -1,32 +1,37 @@
 package trabajofinal.factory;
 
+import trabajofinal.front.App;
 import trabajofinal.models.*;
 
 import java.io.IOException;
 import java.util.*;
 
 public class TravelAgent {
-    private String SERIALIZABLE_PATH;
-    private String SERIALIZABLE_FORMAT;
+    private String SERIALIZABLE_PATH = "c:/json/";
+    private String SERIALIZABLE_FORMAT = "txt";
 
     private List<Destination> destinations;
     private List<Activity> activities;
     private List<Hotel> hotels;
     private List<Traveller> travellers;
     private List<TransportType> transportTypes;
+    private HashMap<String,Travel> travels;
 
     private Data data = new Data();
 
     private HashMap<Character, String> optionsCharacter = new HashMap<>();
 
-    public TravelAgent(String path, String format) {
-        this.SERIALIZABLE_PATH = path;
-        this.SERIALIZABLE_FORMAT = format;
+    public TravelAgent( boolean saveData) {
         this.optionsCharacter.put('O', "Open");
         this.optionsCharacter.put('D', "Delete");
+        if (saveData) {
+            saveData("all");
+        }
+        initData();
+        this.travels = setRandomTravelsHashMap(5);
     }
 
-    public void saveData(String classType) {
+    private void saveData(String classType) {
         switch (classType) {
             case "destinations":
                 Serial.saveArrayModel(data.getDestinations(), SERIALIZABLE_PATH, "destinations", SERIALIZABLE_FORMAT);
@@ -52,9 +57,9 @@ public class TravelAgent {
         }
     }
 
-    public void initData() {
+    private void initData() {
         try {
-            this.destinations = Serial.loadArrayDestinationModel(SERIALIZABLE_PATH,SERIALIZABLE_FORMAT);
+            this.destinations = Serial.loadArrayDestinationModel(this.SERIALIZABLE_PATH,this.SERIALIZABLE_FORMAT);
         } catch (IOException ioEx){
             System.out.println("No hay datos de destinos");
         }
@@ -91,7 +96,7 @@ public class TravelAgent {
         return locator;
     }
 
-    public HashMap<String,Travel> getRandomTravelsHashMap(int quantity) {
+    private HashMap<String,Travel> setRandomTravelsHashMap(int quantity) {
         HashMap<String, Travel> hashMap = new HashMap<>();
         String locator;
         for ( hashMap.size() ; hashMap.size() < quantity;) {
@@ -101,6 +106,11 @@ public class TravelAgent {
             }
         }
         return hashMap;
+    }
+
+
+    public HashMap<String,Travel> getTravels() {
+        return this.travels;
     }
 
     public List<Travel> getRandomTravelsList(int quantity) {
@@ -183,7 +193,7 @@ public class TravelAgent {
         return servicesList;
     }
 
-    public HashMap<Character, String> getHashMapOptions() {
+    private HashMap<Character, String> getHashMapOptions() {
         return optionsCharacter;
     }
 
@@ -196,23 +206,22 @@ public class TravelAgent {
     // Primero si la letra esta entre las opciones que se le ofrece
     // Y si el codigo del Travel es real
     public static boolean hasTravelOption(String in, HashMap<String, Travel> map){
-        TravelAgent travelAgent = new TravelAgent("c:/json/", ".text");
+        TravelAgent travelAgent = new TravelAgent(false);
         String key = in.substring(1);
         return travelAgent.hasOptionCode(in.charAt(0)) && map.containsKey(key);
     }
     
-    public static void doOption(String key) {
-        TravelAgent travelAgent = new TravelAgent("c:/json/", ".text");
+    public void doOption(String key) {
+        TravelAgent travelAgent = new TravelAgent(false);
         Character typeOption = key.charAt(0);
         String travelKey = key.substring(1);
         String nameOption = travelAgent.getHashMapOptions().get(typeOption);
-        System.out.println("vas a " + nameOption + " el viaje " + typeOption +travelKey);
         switch (nameOption){
             case "Open":
                 System.out.println("Open");
                 break;
             case "Delete":
-                System.out.println("Deletesss");
+                deleteTravel(this.travels.get(travelKey), travelKey);
                 break;
         }
     } 
@@ -223,12 +232,12 @@ public class TravelAgent {
         return travels;
     }
 
-    public void deleteTravel(Travel travel){
-        // delete travel
-    }
-
-    public List<Travel> getTravels(){
-        return new ArrayList<Travel>();
+    private void deleteTravel(Travel travel, String travelKey) {
+        if (App.confirmation("Seguro que quieres borrar el "+ travelKey + ": " + travel)){
+            System.out.println("Borrado");
+        } else {
+            System.out.println("no borrado");
+        }
     }
 
 }

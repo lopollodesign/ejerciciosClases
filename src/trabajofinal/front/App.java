@@ -1,7 +1,10 @@
+package trabajofinal.front;
+
 import trabajofinal.models.*;
 import trabajofinal.utils.Utils;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class App {
 
@@ -10,7 +13,7 @@ public class App {
 
 //    private HashMap<Character, String> optionsCharacter = new HashMap<>();
 //
-//    public App() {
+//    public trabajofinal.front.App() {
 //        this.optionsCharacter.put('O', "Open");
 //        this.optionsCharacter.put('D', "Delete");
 //    }
@@ -25,12 +28,12 @@ public class App {
 //    }
 //
 //    public static boolean hasTravelOption(String in, HashMap<String, Travel> map){
-//        App app = new App();
+//        trabajofinal.front.App app = new trabajofinal.front.App();
 //        String key = in.substring(1);
 //        return app.hasOptionCode(in.charAt(0)) && map.containsKey(key);
 //    }
 
-    static void showTravelList(HashMap<String, Travel> map) {
+    public static void showTravelList(HashMap<String, Travel> map) {
         StringBuilder sb = new StringBuilder();
         for (String locator : map.keySet()) {
             sb.append(simpleTravel(map.get(locator), locator)).append(getSign("intro--d"));
@@ -104,7 +107,7 @@ public class App {
     }
 
     private static String getSquare(String content) {
-        return "[" + content + "] ";
+        return "[" + content + "]";
     }
 
     private static String getSign(String type) {
@@ -124,6 +127,28 @@ public class App {
         }
         return " ";
     }
+
+    public static boolean confirmation(String question) {
+        StringBuilder sb = new StringBuilder();
+        Scanner scanner = new Scanner(System.in);
+        sb.append(question + getSign("intro"));
+        sb.append(getSquare("Y") + "es - " + getSquare("N") + "o\n");
+
+        System.out.println(sb.toString());
+        String response = scanner.nextLine().toLowerCase();
+        if (response.equals("y") || response.equals("n")) {
+            if (response.equals("y")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            System.out.println("Pon un valor válido.");
+            confirmation(question);
+        }
+        return false;
+    }
+
 }
 
 //        System.out.println("¿Que quieres hacer?");
@@ -148,7 +173,7 @@ public class App {
 //            System.out.println("El codigo " + hello + " no es valido ¿Que quieres hacer ahora?");
 //            hello = scanner.nextLine();
 //        }
-//        App();
+//        trabajofinal.front.App();
 //        System.out.println("Has puesto \"" + hello + "\"");
 
 //private static void listToString(List objectsList, String listName) {
