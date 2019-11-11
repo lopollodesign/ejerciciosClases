@@ -28,7 +28,7 @@ public class TravelAgent {
             saveData("all");
         }
         initData();
-        this.travels = setRandomTravelsHashMap(5);
+        this.travels = setRandomTravelsHashMap(2);
     }
 
     private void saveData(String classType) {
@@ -106,6 +106,10 @@ public class TravelAgent {
             }
         }
         return hashMap;
+    }
+
+    public void resetTravels() {
+        this.travels = setRandomTravelsHashMap(2);
     }
 
 
@@ -193,7 +197,7 @@ public class TravelAgent {
         return servicesList;
     }
 
-    private HashMap<Character, String> getHashMapOptions() {
+    public HashMap<Character, String> getHashMapOptions() {
         return optionsCharacter;
     }
 
@@ -210,7 +214,7 @@ public class TravelAgent {
         String key = in.substring(1);
         return travelAgent.hasOptionCode(in.charAt(0)) && map.containsKey(key);
     }
-    
+
     public void doOption(String key) {
         TravelAgent travelAgent = new TravelAgent(false);
         Character typeOption = key.charAt(0);
@@ -218,13 +222,13 @@ public class TravelAgent {
         String nameOption = travelAgent.getHashMapOptions().get(typeOption);
         switch (nameOption){
             case "Open":
-                System.out.println("Open");
+                System.out.println(App.openTravel(this.travels.get(travelKey), travelKey));
                 break;
             case "Delete":
-                deleteTravel(this.travels.get(travelKey), travelKey);
+                System.out.println(deleteTravel(this.travels.get(travelKey), travelKey));
                 break;
         }
-    } 
+    }
 
     public List<Travel> addTravel(Travel travel, List<Travel> travels){
         // Travel newTravel = createRandomTravel()
@@ -232,12 +236,16 @@ public class TravelAgent {
         return travels;
     }
 
-    private void deleteTravel(Travel travel, String travelKey) {
-        if (App.confirmation("Seguro que quieres borrar el "+ travelKey + ": " + travel)){
-            System.out.println("Borrado");
-        } else {
-            System.out.println("no borrado");
+    public String deleteTravel(Travel travel, String travelKey) {
+        if (App.confirmation("¿Seguro que quieres borrar el "+ travelKey + "?\n\"" + travel + "\"")){
+            this.travels.remove(travelKey);
+            StringBuilder sb = new StringBuilder();
+            sb.append(App.getSign("intro") + App.getSign("s-lg"));
+            sb.append("Se ha borrado \"" + travel + "\"\n");
+            sb.append(App.getSign("s-lg"));
+            return sb.toString();
         }
+        return "Ok, opción cancelada ;) \nPero entonses ¿Que vols fer?";
     }
 
 }
