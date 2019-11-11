@@ -9,9 +9,23 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        StringBuilder sb = new StringBuilder();
-        initApp(new TravelAgent(false), true);
+        initApp(new TravelAgent(false, travelsQuantity()), true);
+    }
+
+    private static int travelsQuantity() {
+        Scanner sc = new Scanner(System.in);
+        int number;
+        do {
+            System.out.println("Buenas ¿Cuantos viajes quieres crear?");
+            System.out.println("(Recomendado de 3 a 10)");
+            while (!sc.hasNextInt()) {
+                System.out.println("Eso no es un numero ~~'");
+                sc.next();
+            }
+            number = sc.nextInt();
+        } while (number <= 0);
+
+        return number;
     }
 
     private static void initApp(TravelAgent travelAgent, boolean showTravels) throws IOException {
@@ -27,14 +41,13 @@ public class Main {
             if (TravelAgent.hasTravelOption(scannerIn, travelAgent.getTravels())) {
                 doOption(travelAgent, scannerIn);
             } else {
-                System.out.println("Esa opcion no existe. Vuelve a intentarlo");
-                System.out.println("(Visto como estamos, te recomiendo que copies y pegues para no equivocarte)");
+                System.out.println(App.optionNoExist(scannerIn));
                 initApp(travelAgent, false);
             }
         } else {
             System.out.println("La lista de viajes esta vacia");
             if (App.confirmation("¿Quieres crear de nuevo viajes aleatorios?")){
-                travelAgent.resetTravels();
+                travelAgent.resetTravels(2);
                 initApp(travelAgent, true);
             } else {
                 System.out.println("Pues no hay mucho más que hacer aquí... Hasta nunqui");

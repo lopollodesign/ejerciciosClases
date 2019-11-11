@@ -21,14 +21,14 @@ public class TravelAgent {
 
     private HashMap<Character, String> optionsCharacter = new HashMap<>();
 
-    public TravelAgent( boolean saveData) {
+    public TravelAgent( boolean saveData, int travelsQuantity) {
         this.optionsCharacter.put('O', "Open");
         this.optionsCharacter.put('D', "Delete");
         if (saveData) {
             saveData("all");
         }
         initData();
-        this.travels = setRandomTravelsHashMap(2);
+        this.travels = setRandomTravelsHashMap(travelsQuantity);
     }
 
     private void saveData(String classType) {
@@ -108,8 +108,8 @@ public class TravelAgent {
         return hashMap;
     }
 
-    public void resetTravels() {
-        this.travels = setRandomTravelsHashMap(2);
+    public void resetTravels(int quantity) {
+        this.travels = setRandomTravelsHashMap(quantity);
     }
 
 
@@ -210,24 +210,9 @@ public class TravelAgent {
     // Primero si la letra esta entre las opciones que se le ofrece
     // Y si el codigo del Travel es real
     public static boolean hasTravelOption(String in, HashMap<String, Travel> map){
-        TravelAgent travelAgent = new TravelAgent(false);
+        TravelAgent travelAgent = new TravelAgent(false, 1);
         String key = in.substring(1);
         return travelAgent.hasOptionCode(in.charAt(0)) && map.containsKey(key);
-    }
-
-    public void doOption(String key) {
-        TravelAgent travelAgent = new TravelAgent(false);
-        Character typeOption = key.charAt(0);
-        String travelKey = key.substring(1);
-        String nameOption = travelAgent.getHashMapOptions().get(typeOption);
-        switch (nameOption){
-            case "Open":
-                System.out.println(App.openTravel(this.travels.get(travelKey), travelKey));
-                break;
-            case "Delete":
-                System.out.println(deleteTravel(this.travels.get(travelKey), travelKey));
-                break;
-        }
     }
 
     public List<Travel> addTravel(Travel travel, List<Travel> travels){

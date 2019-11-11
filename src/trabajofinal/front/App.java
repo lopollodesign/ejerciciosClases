@@ -95,6 +95,15 @@ public class App {
         return sb.toString();
     }
 
+    public static String optionNoExist(String in) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getSign("s-lg"));
+        sb.append("La option \"" + in + "\" no existe, introduce alguna válida\n");
+        sb.append("(Visto como estamos, te recomiendo que copies y pegues para no equivocarte)\n");
+        sb.append(getSign("s-lg"));
+        return sb.toString();
+    }
+
     private static String createButton(String locator, String code, String text) {
         return text + getSign("arrow") + getSquare(code + locator);
     }
@@ -132,6 +141,7 @@ public class App {
 
         do {
             StringBuilder sb = new StringBuilder();
+            sb.append(getSign("intro"));
             sb.append(getSign("s-lg"));
             if (index > 0){
                 System.out.println("Pon un valor válido...");
