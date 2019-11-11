@@ -9,7 +9,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        initApp(new TravelAgent(false, travelsQuantity(true)), true);
+        initApp(new TravelAgent(true, travelsQuantity(true)), true);
     }
 
     private static int travelsQuantity(boolean initial) {
