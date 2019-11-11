@@ -9,14 +9,17 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        initApp(new TravelAgent(false, travelsQuantity()), true);
+        initApp(new TravelAgent(false, travelsQuantity(true)), true);
     }
 
-    private static int travelsQuantity() {
+    private static int travelsQuantity(boolean initial) {
         Scanner sc = new Scanner(System.in);
         int number;
         do {
-            System.out.println("Buenas ¿Cuantos viajes quieres crear?");
+            if (initial){
+                System.out.println("Buenas!");
+            }
+            System.out.println("¿Cuantos viajes quieres crear?");
             System.out.println("(Recomendado de 3 a 10)");
             while (!sc.hasNextInt()) {
                 System.out.println("Eso no es un numero ~~'");
@@ -47,7 +50,7 @@ public class Main {
         } else {
             System.out.println("La lista de viajes esta vacia");
             if (App.confirmation("¿Quieres crear de nuevo viajes aleatorios?")){
-                travelAgent.resetTravels(2);
+                travelAgent.resetTravels(travelsQuantity(false));
                 initApp(travelAgent, true);
             } else {
                 System.out.println("Pues no hay mucho más que hacer aquí... Hasta nunqui");
