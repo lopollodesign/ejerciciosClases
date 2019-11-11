@@ -117,14 +117,6 @@ public class TravelAgent {
         return this.travels;
     }
 
-    public List<Travel> getRandomTravelsList(int quantity) {
-        List<Travel> list = new ArrayList<>();
-        for (int i = 0; i < quantity; i++) {
-            list.add(getRandomTravel());
-        }
-        return list;
-    }
-
     private Travel getRandomTravel() {
         Travel travel = new Travel();
         travel.setTraveller((Traveller)getRandomItemList(this.travellers));
